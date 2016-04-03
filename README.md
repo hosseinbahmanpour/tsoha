@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Työn repositorio](https://github.com/hosseinbahmanpour/tsoha)
-* [Työn dokumentaatio](https://github.com/hosseinbahmanpour/tsoha/blob/master/Doc/Dokumentaatio.pdf)
+* [Työn dokumentaatio](https://github.com/hosseinbahmanpour/tsoha/tree/master/doc)
 
 ## Työn aihe
 
