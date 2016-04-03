@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Kuljettajat</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
     </head>
     <body>
-        <div>TODO write content</div>
-        <p>Lisää kuljettaja</p>
-        <p>Poista kuljettaja</p>        
-        <a href="kuljettajalista.html">Selaa kuljettajia</a>
+        <ul class="nav nav-tabs">
+            <li><a href="etusivu.html">Etusivu</a></li> 
+            <li><a href="autot.html">Autot</a></li>
+            <li class="active"><a href="kuljettajat.html">Kuljettajat</a></li>
+            <li><a href="ajolisa.html">Lisää Ajovuoro</a></li>
+            <li><a href="kyytilisa.html">Lisää Kyyti</a></li>
+        </ul>
+        <div class="container">
+            <h1>Kuljettajat</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Kuljettaja #</th>
+                        <th>Sukunimi</th>
+                        <th>Etunimi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>19621</td>
+                        <td>Vihavainen</td>
+                        <td>Arto</td>                       
+                    </tr>
+                    <tr>
+                        <td>10451</td>
+                        <td>Luukkainen</td>
+                        <td>Matti</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
