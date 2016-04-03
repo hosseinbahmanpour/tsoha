@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 03-Apr-2016, 16:50:42
+    Created on : 03-Apr-2016, 18:09:17
     Author     : xbax
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Taksitietokanta</h1>
     </body>
 </html>
