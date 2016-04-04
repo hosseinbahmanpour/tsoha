@@ -4,13 +4,11 @@ CREATE TABLE Auto (
 	merkki VARCHAR(140) NOT NULL, 
 	malli VARCHAR(140) NOT NULL
 	);
-
 CREATE TABLE Kuljettaja (
 	id INTEGER PRIMARY KEY NOT NULL, 
 	etunimi VARCHAR(140) NOT NULL, 
 	sukunimi VARCHAR(140) NOT NULL
 	);
-
 CREATE TABLE Ajovuoro (
 	id INTEGER PRIMARY KEY NOT NULL, 
 	kuljettaja_id INTEGER NOT NULL,
@@ -20,7 +18,6 @@ CREATE TABLE Ajovuoro (
 	FOREIGN KEY (kuljettaja_id) REFERENCES kuljettaja(id), 
 	FOREIGN KEY(auto_id) REFERENCES auto(id)
 	);
-
 CREATE TABLE Kyyti (
 	id INTEGER PRIMARY KEY NOT NULL, 
 	ajovuoro_id INTEGER NOT NULL, 
@@ -29,4 +26,3 @@ CREATE TABLE Kyyti (
 	aika DECIMAL(10,2) NOT NULL, 	 
 	FOREIGN KEY(ajovuoro_id) REFERENCES ajovuoro(id)
 	);
-
