@@ -6,5 +6,5 @@
         maxIdle="30" maxWait="10000" username="tunnus"
         password="salasana"
         driverClassName="org.postgresql.Driver"
-        url="jdbc:postgresql://localhost/taksidb" />
+        url="jdbc:postgresql://localhost/tietokannan_nimi" />
 </Context>
