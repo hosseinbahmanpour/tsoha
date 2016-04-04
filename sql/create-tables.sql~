@@ -21,7 +21,7 @@ CREATE TABLE Ajovuoro (
 CREATE TABLE Kyyti (
 	id INTEGER PRIMARY KEY NOT NULL, 
 	ajovuoro_id INTEGER NOT NULL, 
-	hinta DECIMAL(10,2) NOT NULL,
+	hinta DECIMAL(10,2),
 	km DECIMAL(10,2) NOT NULL, 
 	aika DECIMAL(10,2) NOT NULL, 	 
 	FOREIGN KEY(ajovuoro_id) REFERENCES ajovuoro(id)

@@ -8,3 +8,8 @@ Yleisiä linkkejä:
 ## Työn aihe
 
  Tarkoitus on luoda tietokanta josta on hyötyä suomalaisille taksiyrityksille, joilla on useampia autoja ja kuljettajia. Tietokannan avulle he voivat seurata yrityksen, yskittäisten kuljettajien ja autojen tulosta.
+
+### Viikko 2
+
+[Connection Test](http://t-xbax.users.cs.helsinki.fi/ConnectionTest/)
+
