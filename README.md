@@ -11,6 +11,6 @@ Yleisiä linkkejä:
 
 ## Viikko 2
 
-[Connection Test](http://t-xbax.users.cs.helsinki.fi/ConnectionTest/)
-[html-demo (paina kirjautumis nappia niin siirryt etusivulle)](http://t-xbax.users.cs.helsinki.fi/taksidb/html-demo/kirjautuminendemo.html)
+* [Connection Test](http://t-xbax.users.cs.helsinki.fi/ConnectionTest/)
+* [Demosivut (paina nappia niin siirryt etusivulle)](http://t-xbax.users.cs.helsinki.fi/taksidb/html-demo/kirjautuminendemo.html)
 
