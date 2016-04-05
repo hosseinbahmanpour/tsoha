@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +32,9 @@ public class Yhteys extends HttpServlet {
      */
     //HttpServlet-luokan perivään servlettiin menevä metodi:
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        Connection yhteys = Tietokanta.getYhteys(); //Haetaan tietokantaluokalta yhteysolio
+            throws ServletException, IOException, SQLException, NamingException {
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys(); //Haetaan tietokantaluokalta yhteysolio
         PreparedStatement kysely = null;
         ResultSet tulokset = null;
         PrintWriter out = response.getWriter();
@@ -76,6 +78,8 @@ public class Yhteys extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -93,6 +97,8 @@ public class Yhteys extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
             Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
