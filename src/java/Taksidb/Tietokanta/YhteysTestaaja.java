@@ -17,12 +17,14 @@ public class YhteysTestaaja extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+        System.out.println("aaa");
         Connection yhteys = null;
         try {
             yhteys = Tietokanta.getYhteys(); //Haetaan tietokantaluokalta yhteysolio
         } catch (SQLException ex) {
             Logger.getLogger(YhteysTestaaja.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("aaa");
         PreparedStatement kysely = null;
         ResultSet tulokset = null;
         PrintWriter out = response.getWriter();

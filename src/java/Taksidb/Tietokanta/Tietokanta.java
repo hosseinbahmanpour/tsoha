@@ -19,7 +19,6 @@ public class Tietokanta {
 
         cxt = new InitialContext();
         yhteysVarasto = (DataSource) cxt.lookup("java:/comp/env/jdbc/tietokanta");
-
     }
 
     public static Connection getYhteys() throws SQLException {
