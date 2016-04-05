@@ -4,9 +4,17 @@
         <servlet-name>YhteysTestaaja</servlet-name>
         <servlet-class>Taksidb.Tietokanta.YhteysTestaaja</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Yhteys</servlet-name>
+        <servlet-class>Tietokanta.Yhteys</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Yhteys</servlet-name>
+        <url-pattern>/Yhteys</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
