@@ -6,7 +6,11 @@
     </servlet>
     <servlet>
         <servlet-name>Yhteys</servlet-name>
-        <servlet-class>Tietokanta.Yhteys</servlet-class>
+        <servlet-class>Tietokanta.YhteysTesti</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Testi</servlet-name>
+        <servlet-class>Tietokanta.Testi</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Yhteys</servlet-name>
         <url-pattern>/Yhteys</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Testi</servlet-name>
+        <url-pattern>/Testi</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

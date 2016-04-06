@@ -21,7 +21,7 @@ public class Tietokanta {
         yhteysVarasto = (DataSource) cxt.lookup("java:/comp/env/jdbc/tietokanta");
     }
 
-    static Connection getYhteys() throws SQLException {
+    public static Connection getYhteys() throws SQLException {
         yhteys = yhteysVarasto.getConnection();
         return yhteys;
     }

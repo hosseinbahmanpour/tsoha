@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author xbax
  */
-public class Yhteys extends HttpServlet {
+public class YhteysTesti extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,9 +77,9 @@ public class Yhteys extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,9 +97,9 @@ public class Yhteys extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(Yhteys.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
