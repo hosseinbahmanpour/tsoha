@@ -12,6 +12,10 @@
         <servlet-name>Testi</servlet-name>
         <servlet-class>Tietokanta.Testi</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Listaustesti</servlet-name>
+        <servlet-class>Tietokanta.Listaustesti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Testi</servlet-name>
         <url-pattern>/Testi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Listaustesti</servlet-name>
+        <url-pattern>/Listaustesti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
