@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>Listaustesti</servlet-name>
-        <servlet-class>Tietokanta.Listaustesti</servlet-class>
+        <servlet-class>Tietokanta.ListausTesti</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>

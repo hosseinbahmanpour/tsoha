@@ -49,6 +49,7 @@ public class Kayttaja {
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
+       
         String sql = "SELECT id, tunnus, salasana FROM kayttaja";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
@@ -57,7 +58,6 @@ public class Kayttaja {
 
         ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
         while (tulokset.next()) {
-            //Luodaan tuloksia vastaava olio ja palautetaan olio:
             Kayttaja k = new Kayttaja();
             k.setId(tulokset.getInt("id"));
             k.setTunnus(tulokset.getString("tunnus"));
@@ -65,15 +65,17 @@ public class Kayttaja {
 
             kayttajat.add(k);
         }
-        //Suljetaan kaikki resutuloksetsit:
+        
         try {
             tulokset.close();
         } catch (Exception e) {
         }
+        
         try {
             kysely.close();
         } catch (Exception e) {
         }
+        
         try {
             yhteys.close();
         } catch (Exception e) {

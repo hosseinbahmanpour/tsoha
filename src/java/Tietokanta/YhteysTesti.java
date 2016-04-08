@@ -14,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author xbax
- */
 public class YhteysTesti extends HttpServlet {
 
     /**
@@ -30,24 +26,20 @@ public class YhteysTesti extends HttpServlet {
      * @throws IOException if an I/O error occurs
      * @throws java.sql.SQLException
      */
-    //HttpServlet-luokan perivään servlettiin menevä metodi:
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
         Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys(); //Haetaan tietokantaluokalta yhteysolio
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = null;
         ResultSet tulokset = null;
         PrintWriter out = response.getWriter();
         response.setContentType("text/plain;charset=UTF-8");
 
         try {
-            //Alustetaan muuttuja jossa on Select-kysely, joka palauttaa lukuarvon:
             String sqlkysely = "SELECT 1+1 as two";
-
             kysely = yhteys.prepareStatement(sqlkysely);
             tulokset = kysely.executeQuery();
             if (tulokset.next()) {
-                //Tuloksen arvoksi pitäisi tulla numero kaksi.
                 int tulos = tulokset.getInt("two");
                 out.println("Tulos: " + tulos);
             } else {

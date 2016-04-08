@@ -15,8 +15,6 @@ public class Tietokanta {
 
     public Tietokanta() throws NamingException {
 
-        //Haetaan context-xml-tiedostosta tietokannan yhteystiedot
-        //HUOM! Tämä esimerkki ei toimi sellaisenaan ilman Tomcat-palvelinta!
         cxt = new InitialContext();
         yhteysVarasto = (DataSource) cxt.lookup("java:/comp/env/jdbc/tietokanta");
     }

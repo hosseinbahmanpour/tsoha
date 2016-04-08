@@ -13,11 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author xbax
- */
-public class Listaustesti extends HttpServlet {
+public class ListausTesti extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,6 +26,7 @@ public class Listaustesti extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
  
@@ -55,9 +52,9 @@ public class Listaustesti extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(Listaustesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListausTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Listaustesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListausTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -75,9 +72,9 @@ public class Listaustesti extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(Listaustesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListausTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Listaustesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListausTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
