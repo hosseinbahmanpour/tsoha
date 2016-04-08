@@ -13,6 +13,6 @@ Yleisiä linkkejä:
 
 * [Connection Test](http://t-xbax.users.cs.helsinki.fi/ConnectionTest/)
 * [Demosivut (paina nappia niin siirryt etusivulle)](http://t-xbax.users.cs.helsinki.fi/taksidb/html-demo/kirjautuminendemo.html)
-* [Listaustesti](https://github.com/hosseinbahmanpour/tsoha/blob/master/src/java/Tietokanta/Listaustesti.java)
+* [Listaustesti](https://github.com/hosseinbahmanpour/tsoha/blob/master/src/java/Tietokanta/ListausTesti.java)
 
 
