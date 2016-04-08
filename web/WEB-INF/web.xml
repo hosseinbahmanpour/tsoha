@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>Yhteys</servlet-name>
-        <servlet-class>Testit.YhteysTesti</servlet-class>
+        <servlet-class>Tietokanta.YhteysTesti</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Testi</servlet-name>
