@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>Yhteys</servlet-name>
-        <servlet-class>Tietokanta.YhteysTesti</servlet-class>
+        <servlet-class>Testit.YhteysTesti</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Testi</servlet-name>
@@ -14,7 +14,27 @@
     </servlet>
     <servlet>
         <servlet-name>Listaustesti</servlet-name>
-        <servlet-class>Tietokanta.ListausTesti</servlet-class>
+        <servlet-class>Testit.ListausTesti</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KayttajaServlet</servlet-name>
+        <servlet-class>Servletit.KayttajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AutoServlet</servlet-name>
+        <servlet-class>Servletit.AutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjovuoroServlet</servlet-name>
+        <servlet-class>Servletit.AjovuoroServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.KuljettajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KyytiServlet</servlet-name>
+        <servlet-class>Servletit.KyytiServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -31,6 +51,26 @@
     <servlet-mapping>
         <servlet-name>Listaustesti</servlet-name>
         <url-pattern>/Listaustesti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KayttajaServlet</servlet-name>
+        <url-pattern>/KayttajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AutoServlet</servlet-name>
+        <url-pattern>/AutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjovuoroServlet</servlet-name>
+        <url-pattern>/AjovuoroServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KuljettajaServlet</servlet-name>
+        <url-pattern>/KuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KyytiServlet</servlet-name>
+        <url-pattern>/KyytiServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

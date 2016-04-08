@@ -1,4 +1,4 @@
-package Tietokanta;
+package Testit;
 
 import Mallit.Kayttaja;
 import java.io.IOException;
