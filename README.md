@@ -15,10 +15,8 @@ Yleisiä linkkejä:
 
 ### Kirjautumistunnuksia testausta varten
 
- Tunnus: arto
- Salasana: avi
-
- Tunnus: matti
- Salasana mlu
+Tunnus:		Salasana:
+arto		avi
+matti		mlu
 
 
