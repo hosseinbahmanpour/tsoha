@@ -25,13 +25,29 @@ public class KirjautuminenServlet extends HttpServlet {
         String salasana = request.getParameter("password");
         String kayttaja = request.getParameter("tunnus");
 
-        /* Tarkistetaan onko parametrina saatu oikeat tunnukset */
-        if ("hossein".equals(kayttaja) && "hba".equals(salasana)) {
-            /* Jos tunnus on oikea, ohjataan käyttäjä HTTP-ohjauksella kissalistaan. */
+        if (kayttaja == null || salasana == null) {
+            naytaJSP("kirjautuminen.jsp", request, response);
+            return;
+        }
+
+        if (kayttaja == null || kayttaja.equals("")) {
+            asetaVirhe("Kirjautuminen epäonnistui! Et antanut käyttäjätunnusta.", request);
+            naytaJSP("kirjautuminen.jsp", request, response);
+            return;
+        }
+
+        request.setAttribute("kayttaja", kayttaja);
+
+        if (salasana == null || salasana.equals("")) {
+            asetaVirhe("Kirjautuminen epäonnistui! Et antanut salasanaa.", request);
+            naytaJSP("kirjautuminen.jsp", request, response);
+            return;
+        }
+
+        if (kayttaja.equals("hossein") && salasana.equals("hba")) {
             response.sendRedirect("etusivu.jsp");
         } else {
-            /* Väärän tunnuksen syöttänyt saa eteensä kirjautumislomakkeen.
-     * Tässä käytetään omassa kirjastotiedostossa määriteltyä näkymännäyttöfunktioita */
+            asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
             naytaJSP("kirjautuminen.jsp", request, response);
         }
     }
@@ -75,10 +91,13 @@ public class KirjautuminenServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
-
         dispatcher.forward(request, response);
+    }
+
+    public void asetaVirhe(String viesti, HttpServletRequest request) {        
+        request.setAttribute(viesti, this);
     }
 
 }

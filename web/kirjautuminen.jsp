@@ -3,18 +3,9 @@
     Created on : 03-Apr-2016, 18:09:17
     Author     : xbax
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Taksitietokata</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
-        <link href="../css/main.css" rel="stylesheet">
-    </head>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<t:pohja pageTitle="Taksitietokanta">
     <body>
         <div class="container">
             <h1>Tervetuloa tietokantaan, ole hyvä ja kirjaudu sisään.</h1>
@@ -22,13 +13,13 @@
                 <div class="form-group">
                     <label for="inputTunnus1" class="col-md-2 control-label">Tunnus</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="inputTunnus1" name="tunnus" placeholder="Käyttäjätunnus">
+                        <input type="text" class="form-control" id="inputTunnus1" name="tunnus" placeholder="Käyttäjätunnus" value="${kayttaja}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword1" class="col-md-2 control-label">Salasana</label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" id="inputPassword1" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="inputPassword1" name="password" placeholder="Password" value="${kayttaja}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,4 +39,4 @@
             </form>
         </div>
     </body>
-</html>
+</t:pohja>

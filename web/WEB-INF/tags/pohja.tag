@@ -16,19 +16,22 @@
         <div class="navbar navbar-default">
             <div class="container">
                 <ul class="nav navbar-nav">
-            <li><a href="etusivu.jsp">Etusivu</a></li> 
-            <li><a href="autot.jsp">Autot</a></li>
-            <li><a href="kuljettajat.jsp">Kuljettajat</a></li>
-            <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
-            <li><a href="addauto.jsp">Lisää Auto</a></li>
-            <li><a href="addkuski.jsp">Lisää Kuljettaja</a></li>
-            <li><a href="addkyyti.jsp">Lisää Kyyti</a></li>
+                    <li><a href="etusivu.jsp">Etusivu</a></li> 
+                    <li><a href="autot.jsp">Autot</a></li>
+                    <li><a href="kuljettajat.jsp">Kuljettajat</a></li>
+                    <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
+                    <li><a href="addauto.jsp">Lisää Auto</a></li>
+                    <li><a href="addkuski.jsp">Lisää Kuljettaja</a></li>
+                    <li><a href="addkyyti.jsp">Lisää Kyyti</a></li>
                 </ul>
             </div>
         </div>            
         <div class="container">
             <c:if test="${pageError != null}">
                 <div class="alert alert-danger">${pageError}</div>
+            </c:if>
+            <c:if test="${virheViesti != null}">
+                <div class="alert alert-danger">Virhe! ${virheViesti}</div>
             </c:if>
             <jsp:doBody/>
         </div>
