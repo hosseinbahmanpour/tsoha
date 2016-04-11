@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>Yhteys</servlet-name>
-        <servlet-class>Tietokanta.YhteysTesti</servlet-class>
+        <servlet-class>Testit.YhteysTesti</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Testi</servlet-name>
@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>AutoServlet</servlet-name>
-        <servlet-class>Servletit.AutoServlet</servlet-class>
+        <servlet-class>Servletit.AutotServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AjovuoroServlet</servlet-name>
@@ -30,11 +30,19 @@
     </servlet>
     <servlet>
         <servlet-name>KuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.KuljettajaServlet</servlet-class>
+        <servlet-class>Servletit.KuljettajatServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>KyytiServlet</servlet-name>
         <servlet-class>Servletit.KyytiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KirjautuminenServlet</servlet-name>
+        <servlet-class>Servletit.KirjautuminenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EtusivuServlet</servlet-name>
+        <servlet-class>Servletit.EtusivuServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -72,12 +80,20 @@
         <servlet-name>KyytiServlet</servlet-name>
         <url-pattern>/KyytiServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KirjautuminenServlet</servlet-name>
+        <url-pattern>/KirjautuminenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EtusivuServlet</servlet-name>
+        <url-pattern>/EtusivuServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>kirjautuminen.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

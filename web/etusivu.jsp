@@ -5,7 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<t:pohja pageTitle="Autot!">
-    <h1>Hello World!</h1>
+<t:pohja pageTitle="Etusivu">
+    <h1>blaa blaa blaa</h1>
 </t:pohja>
 

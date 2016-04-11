@@ -1,20 +1,24 @@
-package Tietokanta;
+package Servletit;
 
+import Mallit.Auto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class YhteysTesti extends HttpServlet {
+/**
+ *
+ * @author xbax
+ */
+public class AutotServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,34 +28,25 @@ public class YhteysTesti extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, NamingException {
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
-        PreparedStatement kysely = null;
-        ResultSet tulokset = null;
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/plain;charset=UTF-8");
+            throws ServletException, IOException, NamingException, SQLException {
 
-        try {
-            String sqlkysely = "SELECT 1+1 as two";
-            kysely = yhteys.prepareStatement(sqlkysely);
-            tulokset = kysely.executeQuery();
-            if (tulokset.next()) {
-                int tulos = tulokset.getInt("two");
-                out.println("Tulos: " + tulos);
-            } else {
-                out.println("Virhe!");
-            }
-        } catch (Exception e) {
-            out.println("Virhe: " + e.getMessage());
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        request.setAttribute("virheViesti", "Sinulla ei ole ainuttakaan autoa!");
+        request.setAttribute("pageTitle", "Autot");
+
+        List<Auto> autot = Auto.getAutot();
+
+        for (Auto a : autot) {
+            out.println("<li>" + a.getId() + a.getRekkari() + a.getAsemapaikka() + a.getMalli() + a.getMerkki() + "</li>");
         }
 
-        tulokset.close();
-        kysely.close();
-        yhteys.close();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("autot.jsp");
+
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,10 +63,10 @@ public class YhteysTesti extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -88,10 +83,10 @@ public class YhteysTesti extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
-            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -8,11 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author xbax
- */
-public class AutoServlet extends HttpServlet {
+public class EtusivuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,14 +21,13 @@ public class AutoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         request.setAttribute("virheViesti", "Sinulla ei ole ainuttakaan autoa!"); 
-        request.setAttribute("pageTitle", "Autot");  
+        request.setAttribute("pageTitle", "Etusivu");  
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Auto.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("etusivu.jsp");
 
         dispatcher.forward(request, response);
     }

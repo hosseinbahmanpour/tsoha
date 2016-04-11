@@ -16,8 +16,13 @@
         <div class="navbar navbar-default">
             <div class="container">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="Lista">Lista</a></li>
-                    <li><a href="Logout">Kirjaudu ulos</a></li>
+            <li><a href="etusivu.jsp">Etusivu</a></li> 
+            <li><a href="autot.jsp">Autot</a></li>
+            <li><a href="kuljettajat.jsp">Kuljettajat</a></li>
+            <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
+            <li><a href="addauto.jsp">Lisää Auto</a></li>
+            <li><a href="addkuski.jsp">Lisää Kuljettaja</a></li>
+            <li><a href="addkyyti.jsp">Lisää Kyyti</a></li>
                 </ul>
             </div>
         </div>            

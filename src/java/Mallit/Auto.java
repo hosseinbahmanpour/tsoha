@@ -1,5 +1,14 @@
 package Mallit;
 
+import Tietokanta.Tietokanta;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.NamingException;
+
 public class Auto {
 
     private int id;
@@ -59,4 +68,41 @@ public class Auto {
         this.malli = malli;
     }
 
+    public static List<Auto> getAutot() throws NamingException, SQLException {
+
+        String sql = "SELECT * FROM Auto";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+
+        ArrayList<Auto> autot = new ArrayList<Auto>();
+        while (tulokset.next()) {
+            Auto a = new Auto();
+            a.setId(tulokset.getInt("id"));
+            a.setRekkari(tulokset.getString("rekkari"));
+            a.setAsemapaikka(tulokset.getString("asemapaikka"));
+            a.setMerkki(tulokset.getString("merkki"));
+            a.setMalli(tulokset.getString("malli"));
+
+            autot.add(a);
+        }
+
+        try {
+            tulokset.close();
+        } catch (Exception e) {
+        }
+
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+
+        return autot;
+    }
 }
