@@ -7,7 +7,7 @@ Yleisiä linkkejä:
 * [Connectiontest-ohjelma](http://t-xbax.users.cs.helsinki.fi/ConnectionTest/)
 * [HTML-demosivujen etusivu](http://t-xbax.users.cs.helsinki.fi/taksidb/html-demo/kirjautuminendemo.html)
 * [Ensimmäinen oma tietokantalistaus](http://t-xbax.users.cs.helsinki.fi/taksidb/Listaustesti)
-* [Sovelluksen kirjautumissivu]http://t-xbax.users.cs.helsinki.fi/taksidb/
+* [Sovelluksen kirjautumissivu](http://t-xbax.users.cs.helsinki.fi/taksidb/)
 
 ### Työn aihe
 
@@ -17,5 +17,8 @@ Yleisiä linkkejä:
 
  Tunnus: arto
  Salasana: avi
+
+ Tunnus: matti
+ Salasana mlu
 
 
