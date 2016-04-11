@@ -15,9 +15,10 @@ Yleisiä linkkejä:
 
 ### Kirjautumistunnuksia testausta varten
 
----------------------
+
 | Tunnus  | Salasana|
+|---------|---------|
 | arto    | avi     |
 | matti   | mlu     |
 | hossein | hba     |
----------------------
+
