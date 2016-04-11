@@ -11,11 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class KirjautuminenServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
+        
         response.setContentType("text/html;charset=UTF-8");
 
         String salasana = request.getParameter("password");
@@ -46,6 +48,8 @@ public class KirjautuminenServlet extends HttpServlet {
             naytaJSP("kirjautuminen.jsp", request, response);
 
         } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
+            HttpSession session = request.getSession();
+            session.setAttribute("kirjautunut", k);
             response.sendRedirect("etusivu.jsp");
         }
     }
