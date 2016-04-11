@@ -20,7 +20,7 @@ public class Kayttaja {
         this.tunnus = tunnus;
         this.salasana = salasana;
     }
-    
+
     public Kayttaja() {
     }
 
@@ -48,11 +48,42 @@ public class Kayttaja {
         this.salasana = salasana;
     }
 
+    public static Kayttaja etsiKayttajaTunnuksilla(String tunnus, String salasana) throws SQLException {
+        String sql = "SELECT id, tunnus, salasana FROM Kayttaja WHERE tunnus = ? AND salasana = ?";
+        Connection yhteys = Tietokanta.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setString(1, tunnus);
+        kysely.setString(2, salasana);
+        ResultSet rs = kysely.executeQuery();
+        Kayttaja kirjautunut = null;
+
+        if (rs.next()) {
+            kirjautunut = new Kayttaja();
+            kirjautunut.setId(rs.getInt("id"));
+            kirjautunut.setTunnus(rs.getString("tunnus"));
+            kirjautunut.setSalasana(rs.getString("salasana"));
+        }
+        
+        try {
+            rs.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+
+        return kirjautunut;
+    }
+
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
-       
-        String sql = "SELECT id, tunnus, salasana FROM kayttaja";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+
+        String sql = "SELECT id, tunnus, salasana FROM Kayttaja";
+        Connection yhteys = Tietokanta.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
@@ -65,17 +96,17 @@ public class Kayttaja {
 
             kayttajat.add(k);
         }
-        
+
         try {
             tulokset.close();
         } catch (Exception e) {
         }
-        
+
         try {
             kysely.close();
         } catch (Exception e) {
         }
-        
+
         try {
             yhteys.close();
         } catch (Exception e) {

@@ -1,6 +1,10 @@
 package Servletit;
 
+import Mallit.Kayttaja;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,32 +23,36 @@ public class KirjautuminenServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
 
         String salasana = request.getParameter("password");
-        String kayttaja = request.getParameter("tunnus");
+        String tunnus = request.getParameter("tunnus");
 
-        if (kayttaja == null || salasana == null) {
+        if (tunnus == null || salasana == null) {
             naytaJSP("kirjautuminen.jsp", request, response);
             return;
         }
 
-        if (kayttaja == null || kayttaja.equals("")) {
+        if (tunnus == null || tunnus.equals("")) {
             asetaVirhe("Kirjautuminen epäonnistui! Et antanut käyttäjätunnusta.", request);
             naytaJSP("kirjautuminen.jsp", request, response);
             return;
         }
 
-        request.setAttribute("kayttaja", kayttaja);
+        request.setAttribute("kayttaja", tunnus);
 
         if (salasana == null || salasana.equals("")) {
             asetaVirhe("Kirjautuminen epäonnistui! Et antanut salasanaa.", request);
             naytaJSP("kirjautuminen.jsp", request, response);
             return;
         }
+        
+        Kayttaja k = Kayttaja.etsiKayttajaTunnuksilla(tunnus, salasana);
+        
+        
 
-        if (kayttaja.equals("hossein") && salasana.equals("hba")) {
+        if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
             response.sendRedirect("etusivu.jsp");
         } else {
             asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
@@ -64,7 +72,11 @@ public class KirjautuminenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(KirjautuminenServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -78,7 +90,11 @@ public class KirjautuminenServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(KirjautuminenServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
