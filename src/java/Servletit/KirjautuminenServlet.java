@@ -97,7 +97,7 @@ public class KirjautuminenServlet extends HttpServlet {
     }
 
     public void asetaVirhe(String viesti, HttpServletRequest request) {        
-        request.setAttribute(viesti, this);
+            request.setAttribute("virheViesti", viesti);
     }
 
 }
