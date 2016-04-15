@@ -7,7 +7,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:pohja pageTitle="Taksitietokanta">
             <h1>Tervetuloa tietokantaan, ole hyvä ja kirjaudu sisään.</h1>
-            <form class="form-horizontal" role="form" action="KirjautuminenServlet" method="POST">
+            <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/KirjautuminenServlet" method="POST">
                 <div class="form-group">
                     <label for="inputTunnus1" class="col-md-2 control-label">Tunnus</label>
                     <div class="col-md-10">

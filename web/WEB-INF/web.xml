@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>AutoServlet</servlet-name>
-        <servlet-class>Servletit.AutotServlet</servlet-class>
+        <servlet-class>Servletit.AutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AjovuoroServlet</servlet-name>
@@ -30,7 +30,7 @@
     </servlet>
     <servlet>
         <servlet-name>KuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.KuljettajatServlet</servlet-class>
+        <servlet-class>Servletit.KuljettajaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>KyytiServlet</servlet-name>
@@ -43,6 +43,10 @@
     <servlet>
         <servlet-name>EtusivuServlet</servlet-name>
         <servlet-class>Servletit.EtusivuServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>YliServlet</servlet-name>
+        <servlet-class>Servletit.YliServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>EtusivuServlet</servlet-name>
         <url-pattern>/EtusivuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>YliServlet</servlet-name>
+        <url-pattern>/YliServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,35 +16,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AutotServlet extends HttpServlet {
+public class AutoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException, SQLException {
+            throws ServletException, IOException, SQLException, NamingException {
 
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession();
-        session.removeAttribute("kirjautunut");
-
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
+
         if (kirjautunut == null) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("kirjautuminen.jsp");
-            dispatcher.forward(request, response);
+            naytaJSP("kirjautuminen.jsp", request, response);
+        } else {
+            naytaJSP("autot.jsp", request, response);
         }
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("autot.jsp");
+//
+//        dispatcher.forward(request, response);
+//
+//
+//
+//        PrintWriter out = response.getWriter();
+//
+//        List<Auto> autot = Auto.getAutot();
+//
+//        for (Auto a : autot) {
+//            out.println("<li>" + a.getId() + a.getRekkari() + a.getAsemapaikka() + a.getMalli() + a.getMerkki() + "</li>");
+//        }
 
-        PrintWriter out = response.getWriter();
+    }
 
-        request.setAttribute("virheViesti", "Sinulla ei ole ainuttakaan autoa!");
-        request.setAttribute("pageTitle", "Autot");
-
-        List<Auto> autot = Auto.getAutot();
-
-        for (Auto a : autot) {
-            out.println("<li>" + a.getId() + a.getRekkari() + a.getAsemapaikka() + a.getMalli() + a.getMerkki() + "</li>");
-        }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("autot.jsp");
-
+    public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
         dispatcher.forward(request, response);
     }
 
@@ -54,9 +58,9 @@ public class AutotServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,9 +70,9 @@ public class AutotServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AutotServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

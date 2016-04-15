@@ -16,9 +16,9 @@
         <div class="navbar navbar-default">
             <div class="container">
                 <ul class="nav navbar-nav">
-                    <li><a href="etusivu.jsp">Etusivu</a></li> 
-                    <li><a href="autot.jsp">Autot</a></li>
-                    <li><a href="kuljettajat.jsp">Kuljettajat</a></li>
+                    <li><a href="${pageContext.request.contextPath}/EtusivuServlet">Etusivu</a></li> 
+                    <li><a href="${pageContext.request.contextPath}/AutoServlet">Autot</a></li>
+                    <li><a href="${pageContext.request.contextPath}/KuljettajaServlet">Kuljettajat</a></li>
                     <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
                     <li><a href="addauto.jsp">Lisää Auto</a></li>
                     <li><a href="addkuski.jsp">Lisää Kuljettaja</a></li>
