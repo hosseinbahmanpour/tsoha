@@ -70,7 +70,8 @@ public class Auto {
 
     public static int lukumaara() throws NamingException, SQLException {
         String sql = "SELECT Count(*) AS lkm FROM Auto";
-        Connection yhteys = Tietokanta.getYhteys();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
@@ -100,7 +101,8 @@ public class Auto {
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto";
-        Connection yhteys = Tietokanta.getYhteys();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 

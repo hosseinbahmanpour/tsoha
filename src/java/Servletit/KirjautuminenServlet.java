@@ -17,7 +17,7 @@ public class KirjautuminenServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
 
         String salasana = request.getParameter("password");
@@ -54,13 +54,13 @@ public class KirjautuminenServlet extends HttpServlet {
         }
     }
 
+    public void asetaVirhe(String viesti, HttpServletRequest request) {
+        request.setAttribute("virheViesti", viesti);
+    }
+
     public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
         dispatcher.forward(request, response);
-    }
-
-    public void asetaVirhe(String viesti, HttpServletRequest request) {
-        request.setAttribute("virheViesti", viesti);
     }
 
     @Override
