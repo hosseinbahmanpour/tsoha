@@ -6,6 +6,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:pohja pageTitle="Autot">
-    <h1>lista kaikista autoista tähän</h1>
+    <c:forEach var="auto" items="${autot}">
+        <div class="auto">${auto.merkki}</div>
+    </c:forEach>
+
+    <c:out value="${auto.rekkari}"/>
+
 </t:pohja>
 

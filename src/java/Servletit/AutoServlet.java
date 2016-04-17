@@ -3,7 +3,6 @@ package Servletit;
 import Mallit.Auto;
 import Mallit.Kayttaja;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,19 +30,11 @@ public class AutoServlet extends HttpServlet {
         } else {
             naytaJSP("autot.jsp", request, response);
         }
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("autot.jsp");
-//
-//        dispatcher.forward(request, response);
-//
-//
-//
-//        PrintWriter out = response.getWriter();
-//
-//        List<Auto> autot = Auto.getAutot();
-//
-//        for (Auto a : autot) {
-//            out.println("<li>" + a.getId() + a.getRekkari() + a.getAsemapaikka() + a.getMalli() + a.getMerkki() + "</li>");
-//        }
+
+        List<Auto> a = Auto.getAutot();
+        request.setAttribute("autot", a);  
+
+   
 
     }
 

@@ -71,8 +71,7 @@ public class Auto {
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = Tietokanta.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
