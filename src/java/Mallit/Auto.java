@@ -68,6 +68,35 @@ public class Auto {
         this.malli = malli;
     }
 
+    public static int lukumaara() throws NamingException, SQLException {
+        String sql = "SELECT Count(*) AS lkm FROM Auto";
+        Connection yhteys = Tietokanta.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+
+        tulokset.next();
+        int lkm = tulokset.getInt("lkm");
+
+        try {
+            tulokset.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+
+        return lkm;
+    }
+
+    public static Auto etsi(int x) {
+        return null;
+    }
+
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto";

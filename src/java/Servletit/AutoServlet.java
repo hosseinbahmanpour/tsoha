@@ -28,14 +28,37 @@ public class AutoServlet extends HttpServlet {
         if (kirjautunut == null) {
             naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            naytaJSP("autot.jsp", request, response);
-        }
 
-        List<Auto> a = Auto.getAutot();
-        request.setAttribute("autot", a);  
+            List<Auto> a = Auto.getAutot();
+            request.setAttribute("autot", a);
+            naytaJSP("autot.jsp", request, response); }
+            
+//            String idParam = request.getParameter("id");
+//            int id;
+//            try {
+//                id = Integer.parseInt(idParam);
+//            } catch (Exception e) {
+//                // Id-numero nolla ei käytännössä koskaan löydy kannasta, 
+//                // joten koodin suoritus päätyy
+//                // alla olevan if-lauseen else-haaraan
+//                id = 0;
+//            }
+//
+//            Auto x = Auto.etsi(id);
+//
+//            if (x != null) {
+////            request.setAttribute("kissa", kissa);
+////            naytaJSP("autot.jsp", request, response);
+//            } else {
+//                request.setAttribute("auto", null);
+//                asetaVirhe("TOIMII", request);
+//                naytaJSP("autot.jsp", request, response);
+//            }
+//        }
+    }
 
-   
-
+    public void asetaVirhe(String viesti, HttpServletRequest request) {
+        request.setAttribute("virheViesti", viesti);
     }
 
     public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

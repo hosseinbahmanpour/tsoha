@@ -7,10 +7,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:pohja pageTitle="Autot">
     <c:forEach var="auto" items="${autot}">
-        <div class="auto">${auto.merkki}</div>
-    </c:forEach>
-
-    <c:out value="${auto.rekkari}"/>
-
+        <div class="auto">${auto.rekkari}</div>
+        <a href="Auto?id=${auto.id}">${auto.rekkari}</a>
+        <c:out value="${auto.rekkari}"/>
+    </c:forEach>    
 </t:pohja>
 
