@@ -1,25 +1,26 @@
-<%-- 
-    Document   : Auto
-    Created on : 08-Apr-2016, 13:35:54
-    Author     : xbax
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:pohja pageTitle="Autot">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Taksi #</th>
-                <th>Rekisteri #</th>
+                <th>Rekkari</th>
                 <th>Aemapaikka</th>
                 <th>Merkki</th>
                 <th>Malli</th>
             </tr>
-        </thead>
+        <tbody>                  
+            <c:forEach var="auto" items="${autot}">
+                <tr>
+                    <th><div class="auto">${auto.id}</div></th>
+                    <th><div class="auto">${auto.rekkari}</div></th>
+                    <th> <div class="auto">${auto.asemapaikka}</div></th>
+                    <th> <div class="auto">${auto.merkki}</div></th>
+                    <th> <div class="auto">${auto.malli}</div></th>
+                </tr>
+            </c:forEach>    
+            </thead>
     </table>
-    <c:forEach var="auto" items="${autot}">
-        <div class="auto">${auto.rekkari}</div>
-        <a href="Auto?id=${auto.id}">${auto.rekkari}</a>
-        <c:out value="${auto.rekkari}"/>
-    </c:forEach>    
 </t:pohja>

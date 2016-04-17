@@ -1,10 +1,6 @@
-<%-- 
-    Document   : Ajovuoro
-    Created on : 08-Apr-2016, 13:04:09
-    Author     : xbax
---%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"  trimDirectiveWhitespaces="true" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <c:if test="${virheViesti != null}">
   <div class="alert alert-danger">Virhe! ${virheViesti}</div>

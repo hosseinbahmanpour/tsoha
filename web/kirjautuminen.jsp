@@ -1,10 +1,6 @@
-<%-- 
-    Document   : index
-    Created on : 03-Apr-2016, 18:09:17
-    Author     : xbax
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:pohja pageTitle="Taksitietokanta">
             <h1>Tervetuloa tietokantaan, ole hyvä ja kirjaudu sisään.</h1>
             <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/KirjautuminenServlet" method="POST">
