@@ -2,6 +2,21 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:pohja pageTitle="Kuljettajat">
-    <h1>lista kaikista kuljettajista tähän</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Kuski #</th>
+                <th>Etunimi</th>
+                <th>Sukunimi</th>
+            </tr>
+        <tbody>                  
+            <c:forEach var="kuljettaja" items="${kuskit}">
+                <tr>
+                    <th><div class="kuljettaja">${kuljettaja.id}</div></th>
+                    <th><div class="kuljettaja">${kuljettaja.etunimi}</div></th>
+                    <th><div class="kuljettaja">${kuljettaja.sukunimi}</div></th>
+                </tr>
+            </c:forEach>    
+            </thead>
+    </table>
 </t:pohja>
-

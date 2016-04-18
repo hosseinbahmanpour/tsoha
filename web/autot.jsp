@@ -7,7 +7,7 @@
             <tr>
                 <th>Taksi #</th>
                 <th>Rekkari</th>
-                <th>Aemapaikka</th>
+                <th>Asemapaikka</th>
                 <th>Merkki</th>
                 <th>Malli</th>
             </tr>
@@ -16,9 +16,9 @@
                 <tr>
                     <th><div class="auto">${auto.id}</div></th>
                     <th><div class="auto">${auto.rekkari}</div></th>
-                    <th> <div class="auto">${auto.asemapaikka}</div></th>
-                    <th> <div class="auto">${auto.merkki}</div></th>
-                    <th> <div class="auto">${auto.malli}</div></th>
+                    <th><div class="auto">${auto.asemapaikka}</div></th>
+                    <th><div class="auto">${auto.merkki}</div></th>
+                    <th><div class="auto">${auto.malli}</div></th>
                 </tr>
             </c:forEach>    
             </thead>
