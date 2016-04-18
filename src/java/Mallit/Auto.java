@@ -68,6 +68,10 @@ public class Auto {
         this.malli = malli;
     }
 
+    public static Auto etsi(int x) {
+        return null;
+    }
+
     public static int lukumaara() throws NamingException, SQLException {
         String sql = "SELECT Count(*) AS lkm FROM Auto";
         Tietokanta t = new Tietokanta();
@@ -92,10 +96,6 @@ public class Auto {
         }
 
         return lkm;
-    }
-
-    public static Auto etsi(int x) {
-        return null;
     }
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
