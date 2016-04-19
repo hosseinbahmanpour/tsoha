@@ -68,8 +68,34 @@ public class Auto {
         this.malli = malli;
     }
 
-    public static Auto etsi(int x) {
-        return null;
+    public static Auto etsi(int idParam) throws NamingException, SQLException {
+        String sql = "SELECT * FROM Auto WHERE Auto.id = ?";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+
+        Auto a = new Auto();
+        a.setId(tulokset.getInt("id"));
+        a.setRekkari(tulokset.getString("rekkari"));
+        a.setAsemapaikka(tulokset.getString("asemapaikka"));
+        a.setMerkki(tulokset.getString("merkki"));
+        a.setMalli(tulokset.getString("malli"));
+
+        try {
+            tulokset.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+        return a;
     }
 
     public static int lukumaara() throws NamingException, SQLException {

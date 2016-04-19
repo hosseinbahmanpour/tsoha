@@ -31,31 +31,33 @@ public class AutoServlet extends HttpServlet {
 
             List<Auto> a = Auto.getAutot();
             request.setAttribute("autot", a);
-            naytaJSP("autot.jsp", request, response); }
+            naytaJSP("autot.jsp", request, response);
             
-//            String idParam = request.getParameter("id");
-//            int id;
-//            try {
-//                id = Integer.parseInt(idParam);
-//            } catch (Exception e) {
-//                // Id-numero nolla ei käytännössä koskaan löydy kannasta, 
-//                // joten koodin suoritus päätyy
-//                // alla olevan if-lauseen else-haaraan
-//                id = 0;
-//            }
-//
-//            Auto x = Auto.etsi(id);
-//
-//            if (x != null) {
-////            request.setAttribute("kissa", kissa);
-////            naytaJSP("autot.jsp", request, response);
-//            } else {
-//                request.setAttribute("auto", null);
-//                asetaVirhe("TOIMII", request);
-//                naytaJSP("autot.jsp", request, response);
-//            }
-//        }
-    }
+            String idParam = request.getParameter("id");
+            int id;
+            try {
+                id = Integer.parseInt(idParam);
+            } catch (Exception e) {
+                // Id-numero nolla ei käytännössä koskaan löydy kannasta, 
+                // joten koodin suoritus päätyy
+                // alla olevan if-lauseen else-haaraan
+                id = 0;
+            }
+
+            Auto x = Auto.etsi(id);
+
+            if (x != null) {
+            request.setAttribute("auto", x);
+           naytaJSP("autot.jsp", request, response);
+            } else {
+                request.setAttribute("auto", null);
+                asetaVirhe("TOIMII", request);
+                naytaJSP("autot.jsp", request, response);
+            }
+        
+
+        }
+    }   
 
     public void asetaVirhe(String viesti, HttpServletRequest request) {
         request.setAttribute("virheViesti", viesti);

@@ -3,7 +3,6 @@ package Servletit;
 import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,9 +28,11 @@ public class KuljettajaServlet extends HttpServlet {
         if (kirjautunut == null) {
             naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-                List<Kuljettaja> k = Kuljettaja.getKuljettajat();
+            
+            List<Kuljettaja> k = Kuljettaja.getKuljettajat();
             request.setAttribute("kuskit", k);
-            naytaJSP("kuljettajat.jsp", request, response); }
+            naytaJSP("kuljettajat.jsp", request, response);
+        }
 
     }
 
