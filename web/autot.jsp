@@ -14,7 +14,7 @@
         <tbody>                  
             <c:forEach var="auto" items="${autot}">
                 <tr>
-                    <th><a href="Auto?id=${auto.id}">${auto.id} EI VIELÄ TOTEUTETTU</a></div></th>
+                    <th><a href="AutonKyyditServlet?id=${auto.id}">${auto.id} EI VIELÄ TOTEUTETTU</a></div></th>
                     <th><div class="auto">${auto.rekkari}</div></th>
                     <th><div class="auto">${auto.asemapaikka}</div></th>
                     <th><div class="auto">${auto.merkki}</div></th>

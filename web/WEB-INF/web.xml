@@ -52,6 +52,14 @@
         <servlet-name>KyytiServlet_1</servlet-name>
         <servlet-class>Servletit.KyytiServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AutonKyyditServlet</servlet-name>
+        <servlet-class>Servletit.AutonKyyditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KuljettajanKyyditServlet</servlet-name>
+        <servlet-class>Servletit.KuljettajanKyyditServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>KyytiServlet</servlet-name>
         <url-pattern>/KyytiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AutonKyyditServlet</servlet-name>
+        <url-pattern>/AutonKyyditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KuljettajanKyyditServlet</servlet-name>
+        <url-pattern>/KuljettajanKyyditServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
