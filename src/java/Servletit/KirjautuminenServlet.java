@@ -19,7 +19,6 @@ public class KirjautuminenServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, NamingException {
 
         response.setContentType("text/html;charset=UTF-8");
-
         String salasana = request.getParameter("password");
         String tunnus = request.getParameter("tunnus");
 
@@ -43,6 +42,7 @@ public class KirjautuminenServlet extends HttpServlet {
         }
 
         Kayttaja k = Kayttaja.etsiKayttajaTunnuksilla(tunnus, salasana);
+        
         if (k == null) {
             asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
             naytaJSP("kirjautuminen.jsp", request, response);

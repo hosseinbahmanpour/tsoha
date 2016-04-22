@@ -48,6 +48,10 @@
         <servlet-name>YliServlet</servlet-name>
         <servlet-class>Servletit.YliServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KyytiServlet_1</servlet-name>
+        <servlet-class>Servletit.KyytiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>YliServlet</servlet-name>
         <url-pattern>/YliServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KyytiServlet</servlet-name>
+        <url-pattern>/KyytiServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

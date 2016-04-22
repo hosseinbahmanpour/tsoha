@@ -21,7 +21,6 @@ public class KuljettajaServlet extends HttpServlet {
             throws ServletException, IOException, NamingException, SQLException {
 
         response.setContentType("text/html;charset=UTF-8");
-
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 

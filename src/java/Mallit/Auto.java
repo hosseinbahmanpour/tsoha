@@ -69,7 +69,7 @@ public class Auto {
     }
 
     public static Auto etsi(int idParam) throws NamingException, SQLException {
-        String sql = "SELECT * FROM Auto WHERE Auto.id = ?";
+        String sql = "SELECT Kyyti FROM Kyyti, Ajovuoro WHERE Ajovuoro.auto_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -161,4 +161,36 @@ public class Auto {
 
         return autot;
     }
+
+    public void lisaaKantaan() throws NamingException, SQLException {
+        
+        String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id";
+        Connection yhteys = Tietokanta.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+
+        kysely.setString(1, this.getRekkari());
+        kysely.setString(2, this.getAsemapaikka());
+        kysely.setString(3, this.getMerkki());
+        kysely.setString(4, this.getMalli());
+
+        ResultSet ids = kysely.executeQuery();
+        ids.next();
+
+        this.id = ids.getInt(1);
+
+        try {
+            ids.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+
+    }
+
 }

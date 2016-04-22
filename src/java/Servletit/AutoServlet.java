@@ -21,7 +21,6 @@ public class AutoServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, NamingException {
 
         response.setContentType("text/html;charset=UTF-8");
-
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
@@ -38,9 +37,6 @@ public class AutoServlet extends HttpServlet {
             try {
                 id = Integer.parseInt(idParam);
             } catch (Exception e) {
-                // Id-numero nolla ei käytännössä koskaan löydy kannasta, 
-                // joten koodin suoritus päätyy
-                // alla olevan if-lauseen else-haaraan
                 id = 0;
             }
 
@@ -48,14 +44,12 @@ public class AutoServlet extends HttpServlet {
 
             if (x != null) {
             request.setAttribute("auto", x);
-           naytaJSP("autot.jsp", request, response);
+           naytaJSP("KyytiServlet", request, response);
             } else {
                 request.setAttribute("auto", null);
                 asetaVirhe("TOIMII", request);
                 naytaJSP("autot.jsp", request, response);
             }
-        
-
         }
     }   
 

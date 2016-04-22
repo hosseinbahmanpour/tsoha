@@ -21,7 +21,7 @@
                     <li><a href="${pageContext.request.contextPath}/KuljettajaServlet">Kuljettajat</a></li>
                     <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
                     <li><a href="addauto.jsp">Lisää Auto</a></li>
-                    <li><a href="addkuski.jsp">Lisää Kuljettaja</a></li>
+                    <li><a href="addkuljettaja.jsp">Lisää Kuljettaja</a></li>
                     <li><a href="addkyyti.jsp">Lisää Kyyti</a></li>
                 </ul>
             </div>
