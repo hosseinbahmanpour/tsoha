@@ -12,7 +12,7 @@
         <tbody>                  
             <c:forEach var="kuljettaja" items="${kuskit}">
                 <tr>
-                    <th><a href="KuljettajanKyyditServlet?id=${kuljettaja.id}">${kuljettaja.id} </a></th>
+                    <th><a href="KuljettajanKyyditServlet?id=${kuljettaja.id}"><div class="kuljettaja">${kuljettaja.id}</div></a></th>
                     <th><div class="kuljettaja">${kuljettaja.etunimi}</div></th>
                     <th><div class="kuljettaja">${kuljettaja.sukunimi}</div></th>
                 </tr>

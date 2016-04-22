@@ -31,27 +31,27 @@ public class AutoServlet extends HttpServlet {
             List<Auto> a = Auto.getAutot();
             request.setAttribute("autot", a);
             naytaJSP("autot.jsp", request, response);
-            
-            String idParam = request.getParameter("id");
-            int id;
-            try {
-                id = Integer.parseInt(idParam);
-            } catch (Exception e) {
-                id = 0;
-            }
 
-            Auto x = Auto.etsi(id);
-
-            if (x != null) {
-            request.setAttribute("auto", x);
-           naytaJSP("KyytiServlet", request, response);
-            } else {
-                request.setAttribute("auto", null);
-                asetaVirhe("TOIMII", request);
-                naytaJSP("autot.jsp", request, response);
-            }
+//            String idParam = request.getParameter("id");
+//            int id;
+//            try {
+//                id = Integer.parseInt(idParam);
+//            } catch (Exception e) {
+//                id = 0;
+//            }
+//
+//            Auto x = Auto.etsi(id);
+//
+//            if (x != null) {
+//                request.setAttribute("auto", x);
+//                naytaJSP("AutonKyyditServlet", request, response);
+//            } else {
+//                request.setAttribute("auto", null);
+//                asetaVirhe("TOIMII", request);
+//                naytaJSP("autot.jsp", request, response);
+//            }
         }
-    }   
+    }
 
     public void asetaVirhe(String viesti, HttpServletRequest request) {
         request.setAttribute("virheViesti", viesti);
