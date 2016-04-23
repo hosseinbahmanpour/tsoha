@@ -68,49 +68,16 @@ public class Auto {
         this.malli = malli;
     }
 
-    public static Auto etsi(int idParam) throws NamingException, SQLException {
-        String sql = "SELECT Kyyti FROM Kyyti, Ajovuoro WHERE Ajovuoro.auto_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
-        PreparedStatement kysely = yhteys.prepareStatement(sql);
-        ResultSet tulokset = kysely.executeQuery();
-        tulokset.next();
-
-        Auto a = new Auto();
-        a.setId(tulokset.getInt("id"));
-        a.setRekkari(tulokset.getString("rekkari"));
-        a.setAsemapaikka(tulokset.getString("asemapaikka"));
-        a.setMerkki(tulokset.getString("merkki"));
-        a.setMalli(tulokset.getString("malli"));
-        
-        Kyyti k = new Kyyti();
-        
-
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-        return a;
-    }
-
     public static int lukumaara() throws NamingException, SQLException {
+        
         String sql = "SELECT Count(*) AS lkm FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-
+        
         try {
             tulokset.close();
         } catch (Exception e) {
@@ -123,19 +90,19 @@ public class Auto {
             yhteys.close();
         } catch (Exception e) {
         }
-
+        
         return lkm;
     }
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
-
+        
         String sql = "SELECT * FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-
         ArrayList<Auto> autot = new ArrayList<Auto>();
+        
         while (tulokset.next()) {
             Auto a = new Auto();
             a.setId(tulokset.getInt("id"));
@@ -143,44 +110,34 @@ public class Auto {
             a.setAsemapaikka(tulokset.getString("asemapaikka"));
             a.setMerkki(tulokset.getString("merkki"));
             a.setMalli(tulokset.getString("malli"));
-
             autot.add(a);
         }
-
         try {
             tulokset.close();
         } catch (Exception e) {
         }
-
         try {
             kysely.close();
         } catch (Exception e) {
         }
-
         try {
             yhteys.close();
         } catch (Exception e) {
         }
-
         return autot;
     }
 
     public void lisaaKantaan() throws NamingException, SQLException {
-        
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
         Connection yhteys = Tietokanta.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-
         kysely.setString(1, this.getRekkari());
         kysely.setString(2, this.getAsemapaikka());
         kysely.setString(3, this.getMerkki());
         kysely.setString(4, this.getMalli());
-
         ResultSet ids = kysely.executeQuery();
         ids.next();
-
         this.id = ids.getInt(1);
-
         try {
             ids.close();
         } catch (Exception e) {
@@ -193,7 +150,5 @@ public class Auto {
             yhteys.close();
         } catch (Exception e) {
         }
-
     }
-
 }

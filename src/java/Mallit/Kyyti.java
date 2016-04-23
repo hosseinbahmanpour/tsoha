@@ -67,6 +67,78 @@ public class Kyyti {
     public void setAika(int aika) {
         this.aika = aika;
     }
+    
+     public static List<Kyyti> etsiAutonKyydit(int idParam) throws NamingException, SQLException {
+        
+        String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.auto_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, idParam);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();        
+        ArrayList<Kyyti> kyydit = new ArrayList<Kyyti>();
+        
+        while (tulokset.next()) {
+            Kyyti k = new Kyyti();
+            k.setId(tulokset.getInt("id"));
+            k.setAjovuoroId(tulokset.getInt("ajovuoro_id"));
+            k.setHinta(tulokset.getDouble("hinta"));
+            k.setKm(tulokset.getDouble("km"));
+            k.setAika(tulokset.getInt("aika"));
+            kyydit.add(k);
+        }
+        
+        try {
+            tulokset.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+        return kyydit;
+    }
+     
+     public static List<Kyyti> etsiKuljettajanKyydit(int idParam) throws NamingException, SQLException {
+        
+        String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.kuljettaja_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, idParam);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();        
+        ArrayList<Kyyti> kyydit = new ArrayList<Kyyti>();
+        
+        while (tulokset.next()) {
+            Kyyti k = new Kyyti();
+            k.setId(tulokset.getInt("id"));
+            k.setAjovuoroId(tulokset.getInt("ajovuoro_id"));
+            k.setHinta(tulokset.getDouble("hinta"));
+            k.setKm(tulokset.getDouble("km"));
+            k.setAika(tulokset.getInt("aika"));
+            kyydit.add(k);
+        }
+        
+        try {
+            tulokset.close();
+        } catch (Exception e) {
+        }
+        try {
+            kysely.close();
+        } catch (Exception e) {
+        }
+        try {
+            yhteys.close();
+        } catch (Exception e) {
+        }
+        return kyydit;
+    }
 
     public static int lukumaara() throws NamingException, SQLException {
         String sql = "SELECT Count(*) AS lkm FROM Kyyti;";
@@ -92,44 +164,6 @@ public class Kyyti {
         }
 
         return lkm;
-    }
-
-    public static List<Kyyti> getKyydit() throws NamingException, SQLException {
-
-        String sql = "SELECT * FROM Kyyti;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
-        PreparedStatement kysely = yhteys.prepareStatement(sql);
-        ResultSet tulokset = kysely.executeQuery();
-
-        ArrayList<Kyyti> kyydit = new ArrayList<Kyyti>();
-        while (tulokset.next()) {
-            Kyyti k = new Kyyti();
-            k.setId(tulokset.getInt("id"));
-            k.setAjovuoroId(tulokset.getInt("ajovuoro_id"));
-            k.setHinta(tulokset.getDouble("hinta"));
-            k.setKm(tulokset.getDouble("km"));
-            k.setAika(tulokset.getInt("aika"));
-
-            kyydit.add(k);
-        }
-
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-
-        return kyydit;
     }
 
 }

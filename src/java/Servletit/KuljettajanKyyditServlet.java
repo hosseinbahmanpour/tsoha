@@ -19,7 +19,7 @@ public class KuljettajanKyyditServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
-
+        
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
@@ -27,9 +27,26 @@ public class KuljettajanKyyditServlet extends HttpServlet {
         if (kirjautunut == null) {
             naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            List<Kyyti> k = Kyyti.getKyydit();
-            request.setAttribute("kyydit", k);
-            naytaJSP("kyydit.jsp", request, response);
+
+            String idParam = request.getParameter("id");
+            int id;
+            try {
+                id = Integer.parseInt(idParam);
+            } catch (Exception e) {
+                id = 0;
+            }
+
+            List<Kyyti> k = Kyyti.etsiKuljettajanKyydit(id);
+
+            if (k != null) {
+                request.setAttribute("kyydit", k);
+                naytaJSP("kyydit.jsp", request, response);
+            } else {
+                request.setAttribute("auto", null);
+                asetaVirhe("Autoa ei löydy!", request);
+                naytaJSP("autot.jsp", request, response);
+            }
+
         }
     }
 

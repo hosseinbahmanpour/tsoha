@@ -1,6 +1,5 @@
 package Servletit;
 
-import Mallit.Auto;
 import Mallit.Kayttaja;
 import Mallit.Kyyti;
 import java.io.IOException;
@@ -37,14 +36,14 @@ public class AutonKyyditServlet extends HttpServlet {
                 id = 0;
             }
 
-            Auto a = Auto.etsi(id);
+            List<Kyyti> k = Kyyti.etsiAutonKyydit(id);
 
-            if (a != null) {
-                request.setAttribute("auto", a);
-                naytaJSP("AutonKyyditServlet", request, response);
+            if (k != null) {
+                request.setAttribute("kyydit", k);
+                naytaJSP("kyydit.jsp", request, response);
             } else {
                 request.setAttribute("auto", null);
-                asetaVirhe("TOIMII", request);
+                asetaVirhe("Autoa ei löydy!", request);
                 naytaJSP("autot.jsp", request, response);
             }
             
