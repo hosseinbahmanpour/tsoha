@@ -49,7 +49,7 @@ public class Kuljettaja {
     }
 
     public static int lukumaara() throws NamingException, SQLException {
-        String sql = "SELECT Count(*) AS lkm FROM Kuljettaja";
+        String sql = "SELECT Count(*) AS lkm FROM Kuljettaja;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class Kuljettaja {
 
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
-        String sql = "SELECT * FROM Kuljettaja";
+        String sql = "SELECT * FROM Kuljettaja;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);

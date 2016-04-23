@@ -7,9 +7,9 @@
             <tr>
                 <th>Kyyti #</th>
                 <th>Ajovuoro #</th>
-                <th>Hinta</th>
-                <th>Km</th>
-                <th>Aika</th>
+                <th>Hinta (€)</th>
+                <th>Matka (km)</th>
+                <th>Aika (min)</th>
             </tr>
         <tbody>                  
             <c:forEach var="kyyti" items="${kyydit}">

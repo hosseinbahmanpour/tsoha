@@ -82,6 +82,9 @@ public class Auto {
         a.setAsemapaikka(tulokset.getString("asemapaikka"));
         a.setMerkki(tulokset.getString("merkki"));
         a.setMalli(tulokset.getString("malli"));
+        
+        Kyyti k = new Kyyti();
+        
 
         try {
             tulokset.close();
@@ -99,7 +102,7 @@ public class Auto {
     }
 
     public static int lukumaara() throws NamingException, SQLException {
-        String sql = "SELECT Count(*) AS lkm FROM Auto";
+        String sql = "SELECT Count(*) AS lkm FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -126,7 +129,7 @@ public class Auto {
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
-        String sql = "SELECT * FROM Auto";
+        String sql = "SELECT * FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -164,7 +167,7 @@ public class Auto {
 
     public void lisaaKantaan() throws NamingException, SQLException {
         
-        String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id";
+        String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
         Connection yhteys = Tietokanta.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
 

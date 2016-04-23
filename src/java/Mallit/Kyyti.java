@@ -15,9 +15,9 @@ public class Kyyti {
     private int ajovuoroId;
     private double hinta;
     private double km;
-    private double aika;
+    private int aika;
 
-    public Kyyti(int id, int ajovuoroId, double hinta, double km, double aika) {
+    public Kyyti(int id, int ajovuoroId, double hinta, double km, int aika) {
         this.id = id;
         this.ajovuoroId = ajovuoroId;
         this.hinta = hinta;
@@ -60,16 +60,16 @@ public class Kyyti {
         this.km = km;
     }
 
-    public double getAika() {
+    public int getAika() {
         return aika;
     }
 
-    public void setAika(double aika) {
+    public void setAika(int aika) {
         this.aika = aika;
     }
 
     public static int lukumaara() throws NamingException, SQLException {
-        String sql = "SELECT Count(*) AS lkm FROM Kyyti";
+        String sql = "SELECT Count(*) AS lkm FROM Kyyti;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class Kyyti {
 
     public static List<Kyyti> getKyydit() throws NamingException, SQLException {
 
-        String sql = "SELECT * FROM Kyyti";
+        String sql = "SELECT * FROM Kyyti;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
@@ -106,10 +106,10 @@ public class Kyyti {
         while (tulokset.next()) {
             Kyyti k = new Kyyti();
             k.setId(tulokset.getInt("id"));
-            k.setAjovuoroId(tulokset.getInt("ajovuoroId"));
+            k.setAjovuoroId(tulokset.getInt("ajovuoro_id"));
             k.setHinta(tulokset.getDouble("hinta"));
             k.setKm(tulokset.getDouble("km"));
-            k.setAika(tulokset.getDouble("aika"));
+            k.setAika(tulokset.getInt("aika"));
 
             kyydit.add(k);
         }
