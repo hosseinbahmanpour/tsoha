@@ -2,13 +2,13 @@ package Servletit;
 
 import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
+import Testit.YhteysTesti;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,40 +19,30 @@ public class KuljettajaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
-
+        
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
-            naytaJSP("kirjautuminen.jsp", request, response);
-        } else {
-            
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
+        } else {            
             List<Kuljettaja> k = Kuljettaja.getKuljettajat();
             request.setAttribute("kuskit", k);
-            naytaJSP("kuljettajat.jsp", request, response);
+            tms.naytaJSP("kuljettajat.jsp", request, response);
         }
-
     }
-
-    public void asetaVirhe(String viesti, HttpServletRequest request) {
-        request.setAttribute("virheViesti", viesti);
-    }
-
-    public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
-        dispatcher.forward(request, response);
-    }
-
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(KuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(KuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -61,15 +51,15 @@ public class KuljettajaServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(KuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(KuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(YhteysTesti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>    
 }

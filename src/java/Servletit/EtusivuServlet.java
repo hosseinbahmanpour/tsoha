@@ -2,7 +2,6 @@ package Servletit;
 
 import Mallit.Kayttaja;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,27 +13,18 @@ public class EtusivuServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
-            naytaJSP("kirjautuminen.jsp", request, response);
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            naytaJSP("etusivu.jsp", request, response);
+            tms.naytaJSP("etusivu.jsp", request, response);
         }
-
     }
-
-    public void asetaVirhe(String viesti, HttpServletRequest request) {
-        request.setAttribute("virheViesti", viesti);
-    }
-
-    public void naytaJSP(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
-        dispatcher.forward(request, response);
-    }
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,5 +40,5 @@ public class EtusivuServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>    
 }

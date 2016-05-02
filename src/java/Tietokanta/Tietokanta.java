@@ -13,7 +13,6 @@ public class Tietokanta {
     static Connection yhteys;
 
     public Tietokanta() throws NamingException {
-
         cxt = new InitialContext();
         yhteysVarasto = (DataSource) cxt.lookup("java:/comp/env/jdbc/tietokanta");
     }
