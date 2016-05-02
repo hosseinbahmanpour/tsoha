@@ -69,7 +69,7 @@ public class Auto {
     }
 
     public static int lukumaara() throws NamingException, SQLException {
-        
+
         String sql = "SELECT Count(*) AS lkm FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
@@ -77,32 +77,19 @@ public class Auto {
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-        
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-        
+        SuljeYhteys tmm = new SuljeYhteys(tulokset, kysely, yhteys);
         return lkm;
     }
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
-        
+
         String sql = "SELECT * FROM Auto;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         ArrayList<Auto> autot = new ArrayList<Auto>();
-        
+
         while (tulokset.next()) {
             Auto a = new Auto();
             a.setId(tulokset.getInt("id"));
@@ -112,43 +99,24 @@ public class Auto {
             a.setMalli(tulokset.getString("malli"));
             autot.add(a);
         }
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
+        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
         return autot;
     }
 
-    public void lisaaKantaan() throws NamingException, SQLException {
+    public static void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
-        Connection yhteys = Tietokanta.getYhteys();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-        kysely.setString(1, this.getRekkari());
-        kysely.setString(2, this.getAsemapaikka());
-        kysely.setString(3, this.getMerkki());
-        kysely.setString(4, this.getMalli());
-        ResultSet ids = kysely.executeQuery();
-        ids.next();
-        this.id = ids.getInt(1);
-        try {
-            ids.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
+//        kysely.setString(1, this.getRekkari());
+//        kysely.setString(2, this.getAsemapaikka());
+//        kysely.setString(3, this.getMerkki());
+//        kysely.setString(4, this.getMalli());
+        ResultSet tulokset = kysely.executeQuery();
+//        ids.next();
+//        this.id = ids.getInt(1);
+
+        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
     }
+
 }

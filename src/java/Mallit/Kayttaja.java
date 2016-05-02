@@ -55,29 +55,16 @@ public class Kayttaja {
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, tunnus);
         kysely.setString(2, salasana);
-        ResultSet rs = kysely.executeQuery();
+        ResultSet tulokset = kysely.executeQuery();
         Kayttaja kirjautunut = null;
 
-        if (rs.next()) {
+        if (tulokset.next()) {
             kirjautunut = new Kayttaja();
-            kirjautunut.setId(rs.getInt("id"));
-            kirjautunut.setTunnus(rs.getString("tunnus"));
-            kirjautunut.setSalasana(rs.getString("salasana"));
+            kirjautunut.setId(tulokset.getInt("id"));
+            kirjautunut.setTunnus(tulokset.getString("tunnus"));
+            kirjautunut.setSalasana(tulokset.getString("salasana"));
         }
-        
-        try {
-            rs.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-
+        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
         return kirjautunut;
     }
 
