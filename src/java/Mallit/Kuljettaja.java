@@ -1,6 +1,5 @@
 package Mallit;
 
-import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +13,7 @@ public class Kuljettaja {
     private int id;
     private String etunimi;
     private String sukunimi;
+    public static YhteysMalleille ym = new YhteysMalleille();
 
     public Kuljettaja(int id, String etunimi, String sukunimi) {
         this.id = id;
@@ -49,64 +49,34 @@ public class Kuljettaja {
     }
 
     public static int lukumaara() throws NamingException, SQLException {
+
         String sql = "SELECT Count(*) AS lkm FROM Kuljettaja;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-
+        ym.sulje(tulokset, kysely, yhteys);
         return lkm;
     }
 
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Kuljettaja;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-
+        
         ArrayList<Kuljettaja> kuskit = new ArrayList<Kuljettaja>();
+        
         while (tulokset.next()) {
             Kuljettaja k = new Kuljettaja();
             k.setId(tulokset.getInt("id"));
             k.setEtunimi(tulokset.getString("etunimi"));
             k.setSukunimi(tulokset.getString("sukunimi"));
-
             kuskit.add(k);
         }
-
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-
+        ym.sulje(tulokset, kysely, yhteys);
         return kuskit;
     }
 

@@ -1,6 +1,5 @@
 package Mallit;
 
-import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +13,7 @@ public class Kayttaja {
     private int id;
     private String tunnus;
     private String salasana;
+    public static YhteysMalleille ym = new YhteysMalleille();
 
     public Kayttaja(int id, String tunnus, String salasana) {
         this.id = id;
@@ -50,8 +50,7 @@ public class Kayttaja {
 
     public static Kayttaja etsiKayttajaTunnuksilla(String tunnus, String salasana) throws SQLException, NamingException {
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja WHERE tunnus = ? AND salasana = ?;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, tunnus);
         kysely.setString(2, salasana);
@@ -64,15 +63,14 @@ public class Kayttaja {
             kirjautunut.setTunnus(tulokset.getString("tunnus"));
             kirjautunut.setSalasana(tulokset.getString("salasana"));
         }
-        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
+        ym.sulje(tulokset, kysely, yhteys);
         return kirjautunut;
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
 
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
@@ -85,22 +83,7 @@ public class Kayttaja {
 
             kayttajat.add(k);
         }
-
-        try {
-            tulokset.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            kysely.close();
-        } catch (Exception e) {
-        }
-
-        try {
-            yhteys.close();
-        } catch (Exception e) {
-        }
-
+        ym.sulje(tulokset, kysely, yhteys);
         return kayttajat;
     }
 }

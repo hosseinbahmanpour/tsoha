@@ -1,6 +1,5 @@
 package Mallit;
 
-import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +15,7 @@ public class Auto {
     private String asemapaikka;
     private String merkki;
     private String malli;
+    public static YhteysMalleille ym = new YhteysMalleille();
 
     public Auto(int id, String rekkari, String asemapaikka, String merkki, String malli) {
         this.id = id;
@@ -70,22 +70,20 @@ public class Auto {
 
     public static int lukumaara() throws NamingException, SQLException {
 
-        String sql = "SELECT Count(*) AS lkm FROM Auto;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        String sql = "SELECT Count(*) AS lkm FROM Auto;";        
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-        SuljeYhteys tmm = new SuljeYhteys(tulokset, kysely, yhteys);
+        ym.sulje(tulokset, kysely, yhteys);
         return lkm;
     }
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         ArrayList<Auto> autot = new ArrayList<Auto>();
@@ -99,14 +97,13 @@ public class Auto {
             a.setMalli(tulokset.getString("malli"));
             autot.add(a);
         }
-        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
+        ym.sulje(tulokset, kysely, yhteys);
         return autot;
     }
 
     public static void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
-        Tietokanta t = new Tietokanta();
-        Connection yhteys = t.getYhteys();
+        Connection yhteys = ym.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
 //        kysely.setString(1, this.getRekkari());
 //        kysely.setString(2, this.getAsemapaikka());
@@ -116,7 +113,7 @@ public class Auto {
 //        ids.next();
 //        this.id = ids.getInt(1);
 
-        SuljeYhteys sulje = new SuljeYhteys(tulokset, kysely, yhteys);
+        ym.sulje(tulokset, kysely, yhteys);
     }
 
 }
