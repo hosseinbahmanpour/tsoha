@@ -15,7 +15,7 @@ public class Auto {
     private String asemapaikka;
     private String merkki;
     private String malli;
-    public static YhteysMalleille ym = new YhteysMalleille();
+    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public Auto(int id, String rekkari, String asemapaikka, String merkki, String malli) {
         this.id = id;
@@ -71,19 +71,19 @@ public class Auto {
     public static int lukumaara() throws NamingException, SQLException {
 
         String sql = "SELECT Count(*) AS lkm FROM Auto;";        
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return lkm;
     }
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         ArrayList<Auto> autot = new ArrayList<Auto>();
@@ -97,13 +97,13 @@ public class Auto {
             a.setMalli(tulokset.getString("malli"));
             autot.add(a);
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return autot;
     }
 
     public static void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
 //        kysely.setString(1, this.getRekkari());
 //        kysely.setString(2, this.getAsemapaikka());
@@ -113,7 +113,7 @@ public class Auto {
 //        ids.next();
 //        this.id = ids.getInt(1);
 
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
     }
 
 }

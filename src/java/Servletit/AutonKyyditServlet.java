@@ -19,13 +19,14 @@ public class AutonKyyditServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
-        
+
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
 
@@ -38,18 +39,17 @@ public class AutonKyyditServlet extends HttpServlet {
             }
 
             List<Kyyti> k = Kyyti.etsiAutonKyydit(id);
-
-            if (k != null) {
+            
+            if (k.isEmpty()) {
+                tms.asetaVirhe("Autoa ei ole olemassa, tai sillä ei ole ajettu kyytejä!", request);
+                tms.naytaJSP("AutoServlet", request, response);
+            } else {
                 request.setAttribute("kyydit", k);
                 tms.naytaJSP("kyydit.jsp", request, response);
-            } else {
-                request.setAttribute("auto", null);
-                tms.asetaVirhe("Autoa ei löydy!", request);
-                tms.naytaJSP("autot.jsp", request, response);
             }
-            
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

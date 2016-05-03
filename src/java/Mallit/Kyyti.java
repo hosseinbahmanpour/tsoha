@@ -15,7 +15,7 @@ public class Kyyti {
     private double hinta;
     private double km;
     private int aika;
-    public static YhteysMalleille ym = new YhteysMalleille();
+    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
     
     public Kyyti(int id, int ajovuoroId, double hinta, double km, int aika) {
         this.id = id;
@@ -71,7 +71,7 @@ public class Kyyti {
     public static List<Kyyti> etsiAutonKyydit(int idParam) throws NamingException, SQLException {
         
         String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.auto_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setInt(1, idParam);
         ResultSet tulokset = kysely.executeQuery();
@@ -88,14 +88,14 @@ public class Kyyti {
             k.setAika(tulokset.getInt("aika"));
             kyydit.add(k);
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return kyydit;
     }
     
     public static List<Kyyti> etsiKuljettajanKyydit(int idParam) throws NamingException, SQLException {
         
         String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.kuljettaja_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setInt(1, idParam);
         ResultSet tulokset = kysely.executeQuery();
@@ -112,18 +112,18 @@ public class Kyyti {
             k.setAika(tulokset.getInt("aika"));
             kyydit.add(k);
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return kyydit;
     }
     
     public static int lukumaara() throws NamingException, SQLException {
         String sql = "SELECT Count(*) AS lkm FROM Kyyti;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();        
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return lkm;
     }
     

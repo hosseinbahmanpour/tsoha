@@ -26,9 +26,14 @@ public class AutoServlet extends HttpServlet {
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
             List<Auto> a = Auto.getAutot();
+            if (a.isEmpty()) {
+                tms.asetaVirhe("Ei yhtään autoa näytettäväksi!", request);
+                tms.naytaJSP("EtusivuServlet", request, response);
+            }
             request.setAttribute("autot", a);
             tms.naytaJSP("autot.jsp", request, response);
         }

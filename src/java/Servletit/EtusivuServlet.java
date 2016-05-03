@@ -19,6 +19,7 @@ public class EtusivuServlet extends HttpServlet {
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
             tms.naytaJSP("etusivu.jsp", request, response);

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 
-public class YhteysMalleille {
+public class ToistuvatMetoditMalleille {
     
     public Connection yhdista() throws NamingException, SQLException {
         Tietokanta t = new Tietokanta();

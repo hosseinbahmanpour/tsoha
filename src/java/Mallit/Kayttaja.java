@@ -13,7 +13,7 @@ public class Kayttaja {
     private int id;
     private String tunnus;
     private String salasana;
-    public static YhteysMalleille ym = new YhteysMalleille();
+    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public Kayttaja(int id, String tunnus, String salasana) {
         this.id = id;
@@ -50,7 +50,7 @@ public class Kayttaja {
 
     public static Kayttaja etsiKayttajaTunnuksilla(String tunnus, String salasana) throws SQLException, NamingException {
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja WHERE tunnus = ? AND salasana = ?;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, tunnus);
         kysely.setString(2, salasana);
@@ -63,14 +63,14 @@ public class Kayttaja {
             kirjautunut.setTunnus(tulokset.getString("tunnus"));
             kirjautunut.setSalasana(tulokset.getString("salasana"));
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return kirjautunut;
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
 
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
@@ -83,7 +83,7 @@ public class Kayttaja {
 
             kayttajat.add(k);
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return kayttajat;
     }
 }

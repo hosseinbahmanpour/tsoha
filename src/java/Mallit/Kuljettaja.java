@@ -13,7 +13,7 @@ public class Kuljettaja {
     private int id;
     private String etunimi;
     private String sukunimi;
-    public static YhteysMalleille ym = new YhteysMalleille();
+    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public Kuljettaja(int id, String etunimi, String sukunimi) {
         this.id = id;
@@ -51,19 +51,19 @@ public class Kuljettaja {
     public static int lukumaara() throws NamingException, SQLException {
 
         String sql = "SELECT Count(*) AS lkm FROM Kuljettaja;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         int lkm = tulokset.getInt("lkm");
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return lkm;
     }
 
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Kuljettaja;";
-        Connection yhteys = ym.yhdista();
+        Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         
@@ -76,7 +76,7 @@ public class Kuljettaja {
             k.setSukunimi(tulokset.getString("sukunimi"));
             kuskit.add(k);
         }
-        ym.sulje(tulokset, kysely, yhteys);
+        tmm.sulje(tulokset, kysely, yhteys);
         return kuskit;
     }
 

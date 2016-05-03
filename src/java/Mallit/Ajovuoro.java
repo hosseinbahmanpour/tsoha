@@ -5,7 +5,7 @@ public class Ajovuoro {
     private int id;
     private int kuljettajaId;
     private int autoId;
-    public static YhteysMalleille ym = new YhteysMalleille();
+    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public Ajovuoro(int id, int kuljettajaId, int autoId) {
         this.id = id;

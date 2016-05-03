@@ -26,9 +26,14 @@ public class KuljettajaServlet extends HttpServlet {
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {            
             List<Kuljettaja> k = Kuljettaja.getKuljettajat();
+            if (k.isEmpty()) {
+                tms.asetaVirhe("Ei yhtään kuskeja näytettäväksi!", request);
+                tms.naytaJSP("EtusivuServlet", request, response);
+            }
             request.setAttribute("kuskit", k);
             tms.naytaJSP("kuljettajat.jsp", request, response);
         }

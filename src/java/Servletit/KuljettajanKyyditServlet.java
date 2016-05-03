@@ -26,6 +26,7 @@ public class KuljettajanKyyditServlet extends HttpServlet {
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
 
@@ -39,15 +40,13 @@ public class KuljettajanKyyditServlet extends HttpServlet {
 
             List<Kyyti> k = Kyyti.etsiKuljettajanKyydit(id);
 
-            if (k != null) {
+            if (k.isEmpty()) {
+               tms.asetaVirhe("Kuskia ei ole olemassa, tai hän ei ole vielä tehnyt töitä!", request);
+                tms.naytaJSP("KuljettajaServlet", request, response);
+            } else {
                 request.setAttribute("kyydit", k);
                 tms.naytaJSP("kyydit.jsp", request, response);
-            } else {
-                request.setAttribute("auto", null);
-                tms.asetaVirhe("Autoa ei löydy!", request);
-                tms.naytaJSP("autot.jsp", request, response);
             }
-
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

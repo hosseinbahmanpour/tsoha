@@ -23,12 +23,13 @@ public class KirjautuminenServlet extends HttpServlet {
         String salasana = request.getParameter("password");
         String tunnus = request.getParameter("tunnus");
 
-        if (tunnus == null || salasana == null) {
+        if (tunnus.equals("") && salasana.equals("")) {
+            tms.asetaVirhe("Kirjautuminen epännistui! Syötä tunnus ja salasana.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
             return;
         }
 
-        if (tunnus == null || tunnus.equals("")) {
+        if (tunnus.equals("")) {
             tms.asetaVirhe("Kirjautuminen epäonnistui! Et antanut käyttäjätunnusta.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
             return;
@@ -36,7 +37,7 @@ public class KirjautuminenServlet extends HttpServlet {
 
         request.setAttribute("kayttaja", tunnus);
 
-        if (salasana == null || salasana.equals("")) {
+        if (salasana.equals("")) {
             tms.asetaVirhe("Kirjautuminen epäonnistui! Et antanut salasanaa.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
             return;
@@ -51,7 +52,7 @@ public class KirjautuminenServlet extends HttpServlet {
         } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
             HttpSession session = request.getSession();
             session.setAttribute("kirjautunut", k);
-            response.sendRedirect("etusivu.jsp");
+            response.sendRedirect("EtusivuServlet");
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
