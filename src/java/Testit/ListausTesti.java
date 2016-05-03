@@ -25,8 +25,7 @@ public class ListausTesti extends HttpServlet {
 
         for (Kayttaja kayttaja : kayttajat) {
             out.println("<li>" + kayttaja.getTunnus() + "</li>");
-        }
-        
+        }        
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override

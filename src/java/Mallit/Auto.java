@@ -101,18 +101,17 @@ public class Auto {
         return autot;
     }
 
-    public static void lisaaKantaan() throws NamingException, SQLException {
+    public void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
         Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-//        kysely.setString(1, this.getRekkari());
-//        kysely.setString(2, this.getAsemapaikka());
-//        kysely.setString(3, this.getMerkki());
-//        kysely.setString(4, this.getMalli());
+        kysely.setString(1, this.getRekkari());
+        kysely.setString(2, this.getAsemapaikka());
+        kysely.setString(3, this.getMerkki());
+        kysely.setString(4, this.getMalli());
         ResultSet tulokset = kysely.executeQuery();
-//        ids.next();
-//        this.id = ids.getInt(1);
-
+        tulokset.next();
+        this.id = tulokset.getInt(1);
         tmm.sulje(tulokset, kysely, yhteys);
     }
 
