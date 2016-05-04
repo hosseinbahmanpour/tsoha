@@ -15,15 +15,6 @@ public class Kayttaja {
     private String salasana;
     public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
-    public Kayttaja(int id, String tunnus, String salasana) {
-        this.id = id;
-        this.tunnus = tunnus;
-        this.salasana = salasana;
-    }
-
-    public Kayttaja() {
-    }
-
     public int getId() {
         return id;
     }
@@ -56,7 +47,6 @@ public class Kayttaja {
         kysely.setString(2, salasana);
         ResultSet tulokset = kysely.executeQuery();
         Kayttaja kirjautunut = null;
-
         if (tulokset.next()) {
             kirjautunut = new Kayttaja();
             kirjautunut.setId(tulokset.getInt("id"));
@@ -68,19 +58,16 @@ public class Kayttaja {
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
-
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja;";
         Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-
         ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
         while (tulokset.next()) {
             Kayttaja k = new Kayttaja();
             k.setId(tulokset.getInt("id"));
             k.setTunnus(tulokset.getString("tunnus"));
             k.setSalasana(tulokset.getString("salasana"));
-
             kayttajat.add(k);
         }
         tmm.sulje(tulokset, kysely, yhteys);

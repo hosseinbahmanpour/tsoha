@@ -15,15 +15,6 @@ public class Kuljettaja {
     private String sukunimi;
     public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
-    public Kuljettaja(int id, String etunimi, String sukunimi) {
-        this.id = id;
-        this.etunimi = etunimi;
-        this.sukunimi = sukunimi;
-    }
-
-    public Kuljettaja() {
-    }
-
     public int getId() {
         return id;
     }
@@ -48,18 +39,6 @@ public class Kuljettaja {
         this.sukunimi = sukunimi;
     }
 
-    public static int lukumaara() throws NamingException, SQLException {
-
-        String sql = "SELECT Count(*) AS lkm FROM Kuljettaja;";
-        Connection yhteys = tmm.yhdista();
-        PreparedStatement kysely = yhteys.prepareStatement(sql);
-        ResultSet tulokset = kysely.executeQuery();
-        tulokset.next();
-        int lkm = tulokset.getInt("lkm");
-        tmm.sulje(tulokset, kysely, yhteys);
-        return lkm;
-    }
-
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Kuljettaja;";
@@ -79,5 +58,4 @@ public class Kuljettaja {
         tmm.sulje(tulokset, kysely, yhteys);
         return kuskit;
     }
-
 }

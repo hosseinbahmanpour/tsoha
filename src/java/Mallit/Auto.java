@@ -17,17 +17,6 @@ public class Auto {
     private String malli;
     public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
-    public Auto(int id, String rekkari, String asemapaikka, String merkki, String malli) {
-        this.id = id;
-        this.rekkari = rekkari;
-        this.asemapaikka = asemapaikka;
-        this.merkki = merkki;
-        this.malli = malli;
-    }
-
-    public Auto() {
-    }
-
     public int getId() {
         return id;
     }
@@ -68,18 +57,6 @@ public class Auto {
         this.malli = malli;
     }
 
-    public static int lukumaara() throws NamingException, SQLException {
-
-        String sql = "SELECT Count(*) AS lkm FROM Auto;";        
-        Connection yhteys = tmm.yhdista();
-        PreparedStatement kysely = yhteys.prepareStatement(sql);
-        ResultSet tulokset = kysely.executeQuery();
-        tulokset.next();
-        int lkm = tulokset.getInt("lkm");
-        tmm.sulje(tulokset, kysely, yhteys);
-        return lkm;
-    }
-
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto;";
@@ -114,5 +91,4 @@ public class Auto {
         this.id = tulokset.getInt(1);
         tmm.sulje(tulokset, kysely, yhteys);
     }
-
 }

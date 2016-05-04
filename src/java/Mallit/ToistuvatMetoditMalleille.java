@@ -20,5 +20,4 @@ public class ToistuvatMetoditMalleille {
         try { kysely.close(); } catch (Exception e) { }
         try { yhteys.close(); } catch (Exception e) { }
     }
-
 }
