@@ -59,12 +59,15 @@ public class Kayttaja {
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
+        
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
+        
         ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
+        
         while (tulokset.next()) {
             Kayttaja k = new Kayttaja();
             k.setId(tulokset.getInt("id"));

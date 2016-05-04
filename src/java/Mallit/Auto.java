@@ -64,6 +64,7 @@ public class Auto {
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
+        
         ArrayList<Auto> autot = new ArrayList<Auto>();
 
         while (tulokset.next()) {
