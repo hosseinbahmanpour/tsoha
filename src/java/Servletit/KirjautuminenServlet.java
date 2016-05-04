@@ -24,7 +24,7 @@ public class KirjautuminenServlet extends HttpServlet {
         String tunnus = request.getParameter("tunnus");
 
         if (tunnus.equals("") && salasana.equals("")) {
-            tms.asetaVirhe("Kirjautuminen epännistui! Syötä tunnus ja salasana.", request);
+            tms.asetaVirhe("Kirjautuminen epäonnistui! Syötä tunnus ja salasana.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
             return;
         }

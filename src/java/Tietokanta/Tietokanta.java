@@ -25,5 +25,4 @@ public class Tietokanta {
     public void closeConnection() throws SQLException {
         yhteys.close();
     }
-
 }
