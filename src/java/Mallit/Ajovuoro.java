@@ -5,7 +5,6 @@ public class Ajovuoro {
     private int id;
     private int kuljettajaId;
     private int autoId;
-    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public int getId() {
         return id;

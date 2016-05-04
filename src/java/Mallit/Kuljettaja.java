@@ -1,5 +1,6 @@
 package Mallit;
 
+import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ public class Kuljettaja {
     private int id;
     private String etunimi;
     private String sukunimi;
-    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public int getId() {
         return id;
@@ -42,7 +42,8 @@ public class Kuljettaja {
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Kuljettaja;";
-        Connection yhteys = tmm.yhdista();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
 
@@ -55,19 +56,20 @@ public class Kuljettaja {
             k.setSukunimi(tulokset.getString("sukunimi"));
             kuskit.add(k);
         }
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
         return kuskit;
     }
 
     public void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Kuljettaja(etunimi, sukunimi) VALUES(?,?) RETURNING id;";
-        Connection yhteys = tmm.yhdista();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, this.getEtunimi());
         kysely.setString(2, this.getSukunimi());
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         this.id = tulokset.getInt(1);
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
     }
 }

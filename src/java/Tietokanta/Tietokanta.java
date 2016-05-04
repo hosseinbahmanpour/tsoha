@@ -1,6 +1,8 @@
 package Tietokanta;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -21,8 +23,10 @@ public class Tietokanta {
         yhteys = yhteysVarasto.getConnection();
         return yhteys;
     }
-
-    public void closeConnection() throws SQLException {
-        yhteys.close();
+    
+    public void sulje(ResultSet tulokset, PreparedStatement kysely) {
+        try { tulokset.close(); } catch (Exception e) { }
+        try { kysely.close(); } catch (Exception e) { }
+        try { yhteys.close(); } catch (Exception e) { }
     }
 }

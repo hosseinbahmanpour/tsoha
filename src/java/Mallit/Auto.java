@@ -1,5 +1,6 @@
 package Mallit;
 
+import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,6 @@ public class Auto {
     private String asemapaikka;
     private String merkki;
     private String malli;
-    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public int getId() {
         return id;
@@ -59,8 +59,9 @@ public class Auto {
 
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
-        String sql = "SELECT * FROM Auto;";
-        Connection yhteys = tmm.yhdista();
+        String sql = "SELECT * FROM Auto;";  
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         ArrayList<Auto> autot = new ArrayList<Auto>();
@@ -74,13 +75,14 @@ public class Auto {
             a.setMalli(tulokset.getString("malli"));
             autot.add(a);
         }
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
         return autot;
     }
 
     public void lisaaKantaan() throws NamingException, SQLException {
         String sql = "INSERT INTO Auto(rekkari, asemapaikka, merkki, malli) VALUES(?,?,?,?) RETURNING id;";
-        Connection yhteys = tmm.yhdista();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, this.getRekkari());
         kysely.setString(2, this.getAsemapaikka());
@@ -89,6 +91,6 @@ public class Auto {
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
         this.id = tulokset.getInt(1);
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
     }
 }

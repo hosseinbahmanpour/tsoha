@@ -1,5 +1,6 @@
 package Mallit;
 
+import Tietokanta.Tietokanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ public class Kayttaja {
     private int id;
     private String tunnus;
     private String salasana;
-    public static ToistuvatMetoditMalleille tmm = new ToistuvatMetoditMalleille();
 
     public int getId() {
         return id;
@@ -41,7 +41,8 @@ public class Kayttaja {
 
     public static Kayttaja etsiKayttajaTunnuksilla(String tunnus, String salasana) throws SQLException, NamingException {
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja WHERE tunnus = ? AND salasana = ?;";
-        Connection yhteys = tmm.yhdista();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setString(1, tunnus);
         kysely.setString(2, salasana);
@@ -53,13 +54,14 @@ public class Kayttaja {
             kirjautunut.setTunnus(tulokset.getString("tunnus"));
             kirjautunut.setSalasana(tulokset.getString("salasana"));
         }
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
         return kirjautunut;
     }
 
     public static List<Kayttaja> getKayttajat() throws NamingException, SQLException {
         String sql = "SELECT id, tunnus, salasana FROM Kayttaja;";
-        Connection yhteys = tmm.yhdista();
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
         ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
@@ -70,7 +72,7 @@ public class Kayttaja {
             k.setSalasana(tulokset.getString("salasana"));
             kayttajat.add(k);
         }
-        tmm.sulje(tulokset, kysely, yhteys);
+        t.sulje(tulokset, kysely);
         return kayttajat;
     }
 }
