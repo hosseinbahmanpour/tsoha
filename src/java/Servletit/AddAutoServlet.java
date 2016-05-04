@@ -22,7 +22,7 @@ public class AddAutoServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            tms.naytaJSP("addkuljettaja.jsp", request, response);
+            tms.naytaJSP("addauto.jsp", request, response);
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
