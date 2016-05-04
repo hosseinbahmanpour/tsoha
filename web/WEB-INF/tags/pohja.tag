@@ -19,10 +19,10 @@
                     <li><a href="${pageContext.request.contextPath}/EtusivuServlet">Etusivu</a></li> 
                     <li><a href="${pageContext.request.contextPath}/AutoServlet">Autot</a></li>
                     <li><a href="${pageContext.request.contextPath}/KuljettajaServlet">Kuljettajat</a></li>
-                    <li><a href="addajovuoro.jsp">Lisää Ajovuoro</a></li>
-                    <li><a href="addauto.jsp">Lisää Auto</a></li>
-                    <li><a href="addkuljettaja.jsp">Lisää Kuljettaja</a></li>
-                    <li><a href="addkyyti.jsp">Lisää Kyyti</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AddAutoServlet">Lisää Auto</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AddKuljettajaServlet">Lisää Kuljettaja</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AddKyytiServlet">Lisää Kyyti</a></li>
+                    <li><a href="${pageContext.request.contextPath}/UloskirjautuminenServlet">Kirjaudu Ulos</a></li>
                 </ul>
             </div>
         </div>            

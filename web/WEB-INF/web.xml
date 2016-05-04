@@ -64,6 +64,22 @@
         <servlet-name>YliServlet_1</servlet-name>
         <servlet-class>Servletit.ToistuvatMetoditServleteille</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAutoServlet</servlet-name>
+        <servlet-class>Servletit.AddAutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UloskirjautuminenServlet</servlet-name>
+        <servlet-class>Servletit.UloskirjautuminenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.AddKuljettajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddKyytiServlet</servlet-name>
+        <servlet-class>Servletit.AddKyytiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>YliServlet_1</servlet-name>
         <url-pattern>/YliServlet_1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAutoServlet</servlet-name>
+        <url-pattern>/AddAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UloskirjautuminenServlet</servlet-name>
+        <url-pattern>/UloskirjautuminenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddKuljettajaServlet</servlet-name>
+        <url-pattern>/AddKuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddKyytiServlet</servlet-name>
+        <url-pattern>/AddKyytiServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
