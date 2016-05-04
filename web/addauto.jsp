@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="inputMalli" class="col-md-2 control-label">Malli</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="inputMalli" name="malli" placeholder="Malli" value="${malli}">
+                <input type="text" class="form-control" id="inputMalli" name="malli" placeholder="1600 LS" value="${malli}">
             </div>
         </div>
         <div class="form-group">

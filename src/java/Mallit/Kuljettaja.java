@@ -45,9 +45,9 @@ public class Kuljettaja {
         Connection yhteys = tmm.yhdista();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         ResultSet tulokset = kysely.executeQuery();
-        
+
         ArrayList<Kuljettaja> kuskit = new ArrayList<Kuljettaja>();
-        
+
         while (tulokset.next()) {
             Kuljettaja k = new Kuljettaja();
             k.setId(tulokset.getInt("id"));
@@ -57,5 +57,17 @@ public class Kuljettaja {
         }
         tmm.sulje(tulokset, kysely, yhteys);
         return kuskit;
+    }
+
+    public void lisaaKantaan() throws NamingException, SQLException {
+        String sql = "INSERT INTO Kuljettaja(etunimi, sukunimi) VALUES(?,?) RETURNING id;";
+        Connection yhteys = tmm.yhdista();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setString(1, this.getEtunimi());
+        kysely.setString(2, this.getSukunimi());
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        this.id = tulokset.getInt(1);
+        tmm.sulje(tulokset, kysely, yhteys);
     }
 }
