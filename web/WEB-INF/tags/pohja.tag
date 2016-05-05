@@ -33,6 +33,9 @@
             <c:if test="${virheViesti != null}">
                 <div class="alert alert-danger">Virhe! ${virheViesti}</div>
             </c:if>
+            <c:if test="${ilmoitus != null}">
+                <div class="alert alert-info">${ilmoitus}</div>
+            </c:if>
             <jsp:doBody/>
         </div>
     </body>

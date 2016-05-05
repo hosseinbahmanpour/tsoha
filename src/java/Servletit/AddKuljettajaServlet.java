@@ -28,11 +28,11 @@ public class AddKuljettajaServlet extends HttpServlet {
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
             tms.naytaJSP("addkuljettaja.jsp", request, response);
-            Kuljettaja uusiKuski = new Kuljettaja();
-            uusiKuski.setEtunimi(request.getParameter("etunimi"));
-            uusiKuski.setSukunimi(request.getParameter("sukunimi"));
-            uusiKuski.lisaaKantaan();
         }
+        Kuljettaja uusiKuski = new Kuljettaja();
+        uusiKuski.setEtunimi(request.getParameter("etunimi"));
+        uusiKuski.setSukunimi(request.getParameter("sukunimi"));
+        uusiKuski.lisaaKantaan();
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override

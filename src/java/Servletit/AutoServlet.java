@@ -29,6 +29,7 @@ public class AutoServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
             List<Auto> a = Auto.getAutot();
             if (a.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään autoa näytettäväksi!", request);

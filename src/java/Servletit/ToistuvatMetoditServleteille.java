@@ -5,6 +5,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ToistuvatMetoditServleteille {
 
@@ -17,4 +18,11 @@ public class ToistuvatMetoditServleteille {
         dispatcher.forward(request, response);
     }
 
+    public void haeIlmoitus(HttpSession session, HttpServletRequest request) {
+        String ilmoitus = (String) session.getAttribute("ilmoitus");
+        if (ilmoitus != null) {
+            session.removeAttribute("ilmoitus");
+            request.setAttribute("ilmoitus", ilmoitus);
+        }
+    }
 }

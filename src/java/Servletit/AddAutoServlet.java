@@ -4,6 +4,7 @@ import Mallit.Auto;
 import Mallit.Kayttaja;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -28,13 +29,21 @@ public class AddAutoServlet extends HttpServlet {
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
             tms.naytaJSP("addauto.jsp", request, response);
-            Auto uusiAuto = new Auto();
-            uusiAuto.setRekkari(request.getParameter("rekkari"));
-            uusiAuto.setAsemapaikka(request.getParameter("asemapaikka"));
-            uusiAuto.setMerkki(request.getParameter("merkki"));
-            uusiAuto.setMalli(request.getParameter("malli"));
-//            if(uusiAuto.onkoKelvollinen) {
+        }
+        Auto uusiAuto = new Auto();
+        uusiAuto.setRekkari(request.getParameter("rekkari"));
+        uusiAuto.setAsemapaikka(request.getParameter("asemapaikka"));
+        uusiAuto.setMerkki(request.getParameter("merkki"));
+        uusiAuto.setMalli(request.getParameter("malli"));
+        if (uusiAuto.onkoKelvollinen()) {
             uusiAuto.lisaaKantaan();
+            response.sendRedirect("autot.jsp");
+            session.setAttribute("ilmoitus", "Auto lisätty onnistuneesti.");
+        } else {
+            Collection<String> virheet = uusiAuto.getVirheet();
+            request.setAttribute("virheet", virheet);
+            request.setAttribute("auto", uusiAuto);
+            tms.naytaJSP("addauto.jsp", request, response);
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

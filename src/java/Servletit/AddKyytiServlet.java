@@ -3,6 +3,7 @@ package Servletit;
 import Mallit.Auto;
 import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
+import Mallit.Kyyti;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,6 +32,11 @@ public class AddKyytiServlet extends HttpServlet {
             request.setAttribute("autot", Auto.getAutot());
             request.setAttribute("kuskit", Kuljettaja.getKuljettajat());
             tms.naytaJSP("addkyyti.jsp", request, response);
+            Kyyti uusiKyyti = new Kyyti();
+//            uusiKyyti.setAjovuoroId(request.getParameter("auto"), request.getParameter("kuljettaja"));
+            uusiKyyti.setHinta(1);
+            uusiKyyti.setKm(2);
+            uusiKyyti.setAika(0);
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
