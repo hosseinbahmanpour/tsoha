@@ -35,7 +35,8 @@ public class Auto {
 
     public void setRekkari(String uusiRekkari) {
         this.rekkari = uusiRekkari;
-        if (uusiRekkari == null) {
+        if (uusiRekkari == null || "".equals(uusiRekkari)) {
+            this.virheet.put("rekkari", "Autolla täytyy olla rekisterinumero.");
             return;
         }
         if (uusiRekkari.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {

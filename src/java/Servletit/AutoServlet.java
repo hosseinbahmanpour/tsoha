@@ -19,7 +19,7 @@ public class AutoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
-        
+
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
@@ -37,8 +37,10 @@ public class AutoServlet extends HttpServlet {
             }
             request.setAttribute("autot", a);
             tms.naytaJSP("autot.jsp", request, response);
+            tms.haeIlmoitus(session, request);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

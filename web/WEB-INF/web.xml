@@ -84,6 +84,14 @@
         <servlet-name>LisaaKuljettajaServlet</servlet-name>
         <servlet-class>Servletit.LisaaKuljettajaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LisaaAutoServlet</servlet-name>
+        <servlet-class>Servletit.LisaaAutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LisaaKyytiServlet</servlet-name>
+        <servlet-class>Servletit.LisaaKyytiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -167,6 +175,14 @@
     <servlet-mapping>
         <servlet-name>LisaaKuljettajaServlet</servlet-name>
         <url-pattern>/LisaaKuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaAutoServlet</servlet-name>
+        <url-pattern>/LisaaAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaKyytiServlet</servlet-name>
+        <url-pattern>/LisaaKyytiServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

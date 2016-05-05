@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:pohja pageTitle="Lisää Kyyti">
-    <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AddKyytiServlet" method="POST">
+    <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/LisaaKyytiServlet" method="POST">
         <div class="form-group">
             <label class="col-md-2 control-label">Auto</label>
             <div class="col-md-10">

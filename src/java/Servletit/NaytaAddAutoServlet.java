@@ -30,21 +30,6 @@ public class NaytaAddAutoServlet extends HttpServlet {
         } else {
             tms.naytaJSP("addauto.jsp", request, response);
         }
-        Auto uusiAuto = new Auto();
-        uusiAuto.setRekkari(request.getParameter("rekkari"));
-        uusiAuto.setAsemapaikka(request.getParameter("asemapaikka"));
-        uusiAuto.setMerkki(request.getParameter("merkki"));
-        uusiAuto.setMalli(request.getParameter("malli"));
-        if (uusiAuto.onkoKelvollinen()) {
-            uusiAuto.lisaaKantaan();
-            response.sendRedirect("addauto.jsp");
-            session.setAttribute("ilmoitus", "Auto lisätty onnistuneesti.");
-        } else {
-            Collection<String> virheet = uusiAuto.getVirheet();
-            request.setAttribute("virheet", virheet);
-            request.setAttribute("auto", uusiAuto);
-            tms.naytaJSP("addauto.jsp", request, response);
-        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
