@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AddAutoServlet extends HttpServlet {
+public class NaytaAddAutoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
@@ -53,9 +53,9 @@ public class AddAutoServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -65,9 +65,9 @@ public class AddAutoServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

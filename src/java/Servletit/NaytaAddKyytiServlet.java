@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AddKyytiServlet extends HttpServlet {
+public class NaytaAddKyytiServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
@@ -46,9 +46,9 @@ public class AddKyytiServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -58,9 +58,9 @@ public class AddKyytiServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(AddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

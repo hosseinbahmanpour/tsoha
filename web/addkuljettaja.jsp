@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <t:pohja pageTitle="Lisää Kuljettaja">
-    <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/AddKuljettajaServlet" method="POST">
+    <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/LisaaKuljettajaServlet" method="POST">
         <div class="form-group">
             <label for="inputEtunimi" class="col-md-2 control-label">Etunimi</label>
             <div class="col-md-10">

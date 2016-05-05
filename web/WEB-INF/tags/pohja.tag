@@ -20,7 +20,7 @@
                     <li><a href="${pageContext.request.contextPath}/AutoServlet">Autot</a></li>
                     <li><a href="${pageContext.request.contextPath}/KuljettajaServlet">Kuljettajat</a></li>
                     <li><a href="${pageContext.request.contextPath}/AddAutoServlet">Lisää Auto</a></li>
-                    <li><a href="${pageContext.request.contextPath}/AddKuljettajaServlet">Lisää Kuljettaja</a></li>
+                    <li><a href="${pageContext.request.contextPath}/NaytaAddKuljettajaServlet">Lisää Kuljettaja</a></li>
                     <li><a href="${pageContext.request.contextPath}/AddKyytiServlet">Lisää Kyyti</a></li>
                     <li><a href="${pageContext.request.contextPath}/UloskirjautuminenServlet">Kirjaudu Ulos</a></li>
                 </ul>

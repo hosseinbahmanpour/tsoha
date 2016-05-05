@@ -65,20 +65,24 @@
         <servlet-class>Servletit.ToistuvatMetoditServleteille</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddAutoServlet</servlet-name>
-        <servlet-class>Servletit.AddAutoServlet</servlet-class>
+        <servlet-name>NaytaAddAutoServlet</servlet-name>
+        <servlet-class>Servletit.NaytaAddAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UloskirjautuminenServlet</servlet-name>
         <servlet-class>Servletit.UloskirjautuminenServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddKuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.AddKuljettajaServlet</servlet-class>
+        <servlet-name>NaytaAddKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.NaytaAddKuljettajaServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddKyytiServlet</servlet-name>
-        <servlet-class>Servletit.AddKyytiServlet</servlet-class>
+        <servlet-name>NaytaAddKyytiServlet</servlet-name>
+        <servlet-class>Servletit.NaytaAddKyytiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LisaaKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.LisaaKuljettajaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -145,20 +149,24 @@
         <url-pattern>/YliServlet_1</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddAutoServlet</servlet-name>
-        <url-pattern>/AddAutoServlet</url-pattern>
+        <servlet-name>NaytaAddAutoServlet</servlet-name>
+        <url-pattern>/NaytaAddAutoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UloskirjautuminenServlet</servlet-name>
         <url-pattern>/UloskirjautuminenServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddKuljettajaServlet</servlet-name>
-        <url-pattern>/AddKuljettajaServlet</url-pattern>
+        <servlet-name>NaytaAddKuljettajaServlet</servlet-name>
+        <url-pattern>/NaytaAddKuljettajaServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddKyytiServlet</servlet-name>
-        <url-pattern>/AddKyytiServlet</url-pattern>
+        <servlet-name>NaytaAddKyytiServlet</servlet-name>
+        <url-pattern>/NaytaAddKyytiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaKuljettajaServlet</servlet-name>
+        <url-pattern>/LisaaKuljettajaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
