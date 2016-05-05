@@ -35,6 +35,9 @@ public class Auto {
 
     public void setRekkari(String uusiRekkari) {
         this.rekkari = uusiRekkari;
+        if (uusiRekkari == null) {
+            return;
+        }
         if (uusiRekkari.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
             this.virheet.put("rekkari", "Rekisterinumeron täytyy koostua aakkosista ja numeroista. Esim: ABC-123.");
         } else {
@@ -53,6 +56,9 @@ public class Auto {
 
     public void setAsemapaikka(String uusiAsemapaikka) {
         this.asemapaikka = uusiAsemapaikka;
+        if (uusiAsemapaikka == null) {
+            return;
+        }
         if (uusiAsemapaikka.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
             this.virheet.put("asemapaikka", "Auton asemapaikan täytyy koostua aakkosista.");
         } else {
@@ -71,6 +77,9 @@ public class Auto {
 
     public void setMerkki(String uusiMerkki) {
         this.merkki = uusiMerkki;
+        if (uusiMerkki == null) {
+            return;
+        }
         if (uusiMerkki.trim().contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
             this.virheet.put("merkki", "Auton merkin täytyy koostua aakkosista.");
         } else {
@@ -89,6 +98,9 @@ public class Auto {
 
     public void setMalli(String uusiMalli) {
         this.malli = uusiMalli;
+        if (uusiMalli == null) {
+            return;
+        }
         if (uusiMalli.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
             this.virheet.put("malli", "Auton mallin täytyy koostua aakkosista.");
         } else {

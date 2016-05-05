@@ -37,7 +37,7 @@ public class AddAutoServlet extends HttpServlet {
         uusiAuto.setMalli(request.getParameter("malli"));
         if (uusiAuto.onkoKelvollinen()) {
             uusiAuto.lisaaKantaan();
-            response.sendRedirect("autot.jsp");
+            response.sendRedirect("addauto.jsp");
             session.setAttribute("ilmoitus", "Auto lisätty onnistuneesti.");
         } else {
             Collection<String> virheet = uusiAuto.getVirheet();
