@@ -19,7 +19,7 @@ public class Auto {
     private String asemapaikka;
     private String merkki;
     private String malli;
-    private Map<String, String> virheet = new HashMap<String, String>();
+    private final Map<String, String> virheet = new HashMap<String, String>();
 
     public int getId() {
         return id;
@@ -34,17 +34,12 @@ public class Auto {
     }
 
     public void setRekkari(String uusiRekkari) {
-        this.rekkari = uusiRekkari;
-        if (uusiRekkari == null || "".equals(uusiRekkari)) {
-            this.virheet.put("rekkari", "Autolla täytyy olla rekisterinumero.");
+        if (uusiRekkari == null || uusiRekkari.trim().equals("")) {
+            this.virheet.put("rekkari", "Rekisterinumeron täytyy olla 4-7 merkkiä. Esim: ABC-123 tai AB-1.");
             return;
         }
-        if (uusiRekkari.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
-            this.virheet.put("rekkari", "Rekisterinumeron täytyy koostua aakkosista ja numeroista. Esim: ABC-123.");
-        } else {
-            this.virheet.remove("rekkari");
-        }
-        if (uusiRekkari.length() > 7 || this.rekkari.length() < 4) {
+        this.rekkari = uusiRekkari.trim().toUpperCase();
+        if (this.rekkari.length() > 7 || this.rekkari.length() < 4) {
             this.virheet.put("rekkari", "Rekisterinumeron täytyy olla 4-7 merkkiä. Esim: ABC-123 tai AB-1.");
         } else {
             this.virheet.remove("rekkari");
@@ -56,17 +51,13 @@ public class Auto {
     }
 
     public void setAsemapaikka(String uusiAsemapaikka) {
-        this.asemapaikka = uusiAsemapaikka;
-        if (uusiAsemapaikka == null) {
+        if (uusiAsemapaikka == null || uusiAsemapaikka.trim().equals("")) {
+            this.virheet.put("asemapaikka", "Autolle täytyy syöttää asemapaikka. Esim: Helsinki.");
             return;
         }
-        if (uusiAsemapaikka.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
-            this.virheet.put("asemapaikka", "Auton asemapaikan täytyy koostua aakkosista.");
-        } else {
-            this.virheet.remove("asemapaikka");
-        }
-        if (uusiAsemapaikka.length() == 0) {
-            this.virheet.put("asemapaikka", "Autolle täytyy syöttää asemapaikka. Esim: Helsinki.");
+        this.asemapaikka = uusiAsemapaikka.trim();
+        if (this.asemapaikka.length() == 0 || this.asemapaikka.length() > 22) {
+            this.virheet.put("asemapaikka", "Syöttämäsi asemapaikan täytyy koostua 1-22 kirjaimesta.");
         } else {
             this.virheet.remove("asemapaikka");
         }
@@ -77,17 +68,13 @@ public class Auto {
     }
 
     public void setMerkki(String uusiMerkki) {
-        this.merkki = uusiMerkki;
-        if (uusiMerkki == null) {
+        if (uusiMerkki == null || uusiMerkki.trim().equals("")) {
+            this.virheet.put("merkki", "Autolla täytyy olla merkki. Esim: Mercedes-Benz.");
             return;
         }
-        if (uusiMerkki.trim().contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
-            this.virheet.put("merkki", "Auton merkin täytyy koostua aakkosista.");
-        } else {
-            this.virheet.remove("merkki");
-        }
-        if (uusiMerkki.length() == 0) {
-            this.virheet.put("merkki", "Autolla täytyy olla merkki. Esim: Mercedes-Benz.");
+        this.merkki = uusiMerkki.trim();
+        if (this.merkki.length() == 0 || this.merkki.length() > 22) {
+            this.virheet.put("merkki", "Auton merkin täytyy koostua 1-22 kirjaimesta.");
         } else {
             this.virheet.remove("merkki");
         }
@@ -98,17 +85,13 @@ public class Auto {
     }
 
     public void setMalli(String uusiMalli) {
-        this.malli = uusiMalli;
-        if (uusiMalli == null) {
+        if (uusiMalli == null || uusiMalli.trim().equals("")) {
+            this.virheet.put("malli", "Autolla täytyy olla malli. Esim: 523i.");
             return;
         }
-        if (uusiMalli.contains("§½!#¤%&/()=?`´+}][{‚$£@€¨^~'*_.,;:<>| ")) {
-            this.virheet.put("malli", "Auton mallin täytyy koostua aakkosista.");
-        } else {
-            this.virheet.remove("malli");
-        }
-        if (uusiMalli.length() == 0) {
-            this.virheet.put("malli", "Autolla täytyy olla malli. Esim: 523i.");
+        this.malli = uusiMalli.trim();
+        if (this.malli.length() == 0 || this.malli.length() > 22) {
+            this.virheet.put("malli", "Auton mallin tulee koostua 1-22 kirjaimesta.");
         } else {
             this.virheet.remove("malli");
         }

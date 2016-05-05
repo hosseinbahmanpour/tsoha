@@ -25,6 +25,7 @@ public class EtusivuServlet extends HttpServlet {
             tms.naytaJSP("etusivu.jsp", request, response);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

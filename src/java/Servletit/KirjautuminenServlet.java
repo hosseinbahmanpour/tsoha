@@ -44,7 +44,7 @@ public class KirjautuminenServlet extends HttpServlet {
         }
 
         Kayttaja k = Kayttaja.etsiKayttajaTunnuksilla(tunnus, salasana);
-        
+
         if (k == null) {
             tms.asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
@@ -55,6 +55,7 @@ public class KirjautuminenServlet extends HttpServlet {
             response.sendRedirect("EtusivuServlet");
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

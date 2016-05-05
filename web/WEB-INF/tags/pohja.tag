@@ -36,6 +36,11 @@
             <c:if test="${ilmoitus != null}">
                 <div class="alert alert-info">${ilmoitus}</div>
             </c:if>
+            <c:if test="${virheet != null}">
+                <c:forEach var="virhe" items="${virheet}">
+                    <div class ="alert alert-danger"><c:out value="${virhe}"/></div>
+                </c:forEach>   
+            </c:if>
             <jsp:doBody/>
         </div>
     </body>

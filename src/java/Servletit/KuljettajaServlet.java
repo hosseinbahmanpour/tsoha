@@ -19,7 +19,7 @@ public class KuljettajaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
-        
+
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
@@ -28,7 +28,7 @@ public class KuljettajaServlet extends HttpServlet {
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
-        } else {            
+        } else {
             List<Kuljettaja> k = Kuljettaja.getKuljettajat();
             if (k.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään kuskeja näytettäväksi!", request);
@@ -39,6 +39,7 @@ public class KuljettajaServlet extends HttpServlet {
         }
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

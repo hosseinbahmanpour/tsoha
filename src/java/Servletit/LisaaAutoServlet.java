@@ -32,11 +32,28 @@ public class LisaaAutoServlet extends HttpServlet {
             session.setAttribute("ilmoitus", "Auto lisätty onnistuneesti.");
         } else {
             Collection<String> virheet = uusiAuto.getVirheet();
+            String rekkari = request.getParameter("rekkari");
+            String asemapaikka = request.getParameter("asemapaikka");
+            String merkki = request.getParameter("merkki");
+            String malli = request.getParameter("malli");
+            if (!rekkari.equals("")) {
+                request.setAttribute("rekkari", rekkari);
+            }
+            if (!asemapaikka.equals("")) {
+                request.setAttribute("asemapaikka", asemapaikka);
+            }
+            if (!merkki.equals("")) {
+                request.setAttribute("merkki", merkki);
+            }
+            if (!malli.equals("")) {
+                request.setAttribute("malli", malli);
+            }
             request.setAttribute("virheet", virheet);
             request.setAttribute("auto", uusiAuto);
             tms.naytaJSP("NaytaAddAutoServlet", request, response);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,4 +83,4 @@ public class LisaaAutoServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-}      
+}

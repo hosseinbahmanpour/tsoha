@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LisaaKuljettajaServlet extends HttpServlet {
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
@@ -23,6 +24,7 @@ public class LisaaKuljettajaServlet extends HttpServlet {
         uusiKuski.lisaaKantaan();
         tms.naytaJSP("KuljettajaServlet", request, response);
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
