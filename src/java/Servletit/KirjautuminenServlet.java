@@ -52,6 +52,7 @@ public class KirjautuminenServlet extends HttpServlet {
         } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
             HttpSession session = request.getSession();
             session.setAttribute("kirjautunut", k);
+            tms.haeIlmoitus(session, request);
             response.sendRedirect("EtusivuServlet");
         }
     }

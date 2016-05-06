@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class PoistaAutoServlet extends HttpServlet {
 
@@ -25,10 +26,11 @@ public class PoistaAutoServlet extends HttpServlet {
         } catch (Exception e) {
             id = 0;
         }
+
         Auto poistettava = new Auto();
-        
         poistettava.poistaKannasta(id);
-        
+        HttpSession session = request.getSession();
+        session.setAttribute("ilmoitus", "Auto poistettu onnistuneesti.");
         tms.naytaJSP("AutoServlet", request, response);
     }
 

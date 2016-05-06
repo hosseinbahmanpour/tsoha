@@ -1,7 +1,14 @@
 package Servletit;
 
+import Mallit.Auto;
 import Mallit.Kayttaja;
+import Mallit.Kuljettaja;
+import Mallit.Kyyti;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class EtusivuServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NamingException, SQLException {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
@@ -22,6 +29,10 @@ public class EtusivuServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
+            request.setAttribute("autot", Auto.lukumaara());
+            request.setAttribute("kuskit", Kuljettaja.lukumaara());
+            request.setAttribute("kyydit", Kyyti.lukumaara());
             tms.naytaJSP("etusivu.jsp", request, response);
         }
     }
@@ -30,13 +41,25 @@ public class EtusivuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

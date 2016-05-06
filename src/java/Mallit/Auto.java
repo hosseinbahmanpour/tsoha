@@ -145,6 +145,18 @@ public class Auto {
         t.sulje(kysely);
     }
 
+    public static int lukumaara() throws NamingException, SQLException {
+        String sql = "SELECT Count(*) AS lkm FROM Auto;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        int lkm = tulokset.getInt("lkm");
+        t.sulje(tulokset, kysely);
+        return lkm;
+    }
+
     public boolean onkoKelvollinen() {
         return this.virheet.isEmpty();
     }

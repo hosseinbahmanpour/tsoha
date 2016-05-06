@@ -108,6 +108,10 @@
         <servlet-name>PoistaAutoServlet</servlet-name>
         <servlet-class>Servletit.PoistaAutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PoistaKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.PoistaKuljettajaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>PoistaAutoServlet</servlet-name>
         <url-pattern>/PoistaAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaKuljettajaServlet</servlet-name>
+        <url-pattern>/PoistaKuljettajaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -95,6 +95,28 @@ public class Kuljettaja {
         t.sulje(tulokset, kysely);
     }
 
+    public void poistaKannasta(int id) throws NamingException, SQLException {
+        String sql = "DELETE FROM Kuljettaja WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, id);
+        kysely.executeUpdate();
+        t.sulje(kysely);
+    }
+
+    public static int lukumaara() throws NamingException, SQLException {
+        String sql = "SELECT Count(*) AS lkm FROM Kuljettaja;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        int lkm = tulokset.getInt("lkm");
+        t.sulje(tulokset, kysely);
+        return lkm;
+    }
+
     public boolean onkoKelvollinen() {
         return this.virheet.isEmpty();
     }

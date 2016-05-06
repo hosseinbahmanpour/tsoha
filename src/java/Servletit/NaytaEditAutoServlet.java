@@ -25,6 +25,7 @@ public class NaytaEditAutoServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
             tms.naytaJSP("editauto.jsp", request, response);
         }
     }

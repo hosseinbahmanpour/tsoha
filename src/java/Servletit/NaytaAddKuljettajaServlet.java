@@ -26,6 +26,7 @@ public class NaytaAddKuljettajaServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
             tms.naytaJSP("addkuljettaja.jsp", request, response);
         }
     }

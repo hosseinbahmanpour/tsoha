@@ -29,6 +29,7 @@ public class KuljettajaServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
             List<Kuljettaja> k = Kuljettaja.getKuljettajat();
             if (k.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään kuskeja näytettäväksi!", request);

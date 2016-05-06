@@ -106,4 +106,16 @@ public class Kyyti {
         t.sulje(tulokset, kysely);
         return kyydit;
     }
+    
+    public static int lukumaara() throws NamingException, SQLException {
+        String sql = "SELECT Count(*) AS lkm FROM Kyyti;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        int lkm = tulokset.getInt("lkm");
+        t.sulje(tulokset, kysely);
+        return lkm;
+    }
 }

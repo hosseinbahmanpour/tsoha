@@ -29,7 +29,7 @@ public class AutonKyyditServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-
+            tms.haeIlmoitus(session, request);
             String idParam = request.getParameter("id");
             int id;
             try {

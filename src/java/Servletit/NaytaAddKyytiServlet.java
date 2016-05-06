@@ -29,6 +29,7 @@ public class NaytaAddKyytiServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
+            tms.haeIlmoitus(session, request);
             request.setAttribute("autot", Auto.getAutot());
             request.setAttribute("kuskit", Kuljettaja.getKuljettajat());
             tms.naytaJSP("addkyyti.jsp", request, response);
