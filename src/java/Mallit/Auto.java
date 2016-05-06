@@ -135,6 +135,16 @@ public class Auto {
         t.sulje(tulokset, kysely);
     }
 
+    public void poistaKannasta(int id) throws NamingException, SQLException {
+        String sql = "DELETE FROM Auto WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, id);
+        kysely.executeUpdate();
+        t.sulje(kysely);
+    }
+
     public boolean onkoKelvollinen() {
         return this.virheet.isEmpty();
     }

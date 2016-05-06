@@ -26,19 +26,19 @@
             <div class="form-group">
                 <label for="inputHinta" class="col-md-2 control-label">Hinta</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="inputHinta" name="hinta" placeholder="Hinta euroissa esim: 22.50" value="${hinta}">
+                    <input type="text" class="form-control" id="inputHinta" name="hinta" placeholder="Hinta euroissa. Esim: 22.50" value="${hinta}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputKm" class="col-md-2 control-label">Km</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="inputKm" name="km" placeholder="Matka kilometreinä esim: 13.6" value="${km}">
+                    <input type="text" class="form-control" id="inputKm" name="km" placeholder="Matka kilometreinä. Esim: 13.6" value="${km}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAika" class="col-md-2 control-label">Aika</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="inputAika" name="aika" placeholder="Aika minuutteina esim 13" value="${aika}">
+                    <input type="text" class="form-control" id="inputAika" name="aika" placeholder="Aika minuutteina. Esim: 13" value="${aika}">
                 </div>
             </div>
             <div class="form-group">

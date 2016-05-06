@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.naming.NamingException;
 
 public class Kuljettaja {
@@ -14,6 +17,7 @@ public class Kuljettaja {
     private int id;
     private String etunimi;
     private String sukunimi;
+    private final Map<String, String> virheet = new HashMap<String, String>();
 
     public int getId() {
         return id;
@@ -27,16 +31,34 @@ public class Kuljettaja {
         return etunimi;
     }
 
-    public void setEtunimi(String etunimi) {
-        this.etunimi = etunimi;
+    public void setEtunimi(String uusiEtunimi) {
+        if (uusiEtunimi == null || uusiEtunimi.trim().equals("")) {
+            this.virheet.put("etunimi", "Kuljettajalla täytyy olla etunimi.");
+            return;
+        }
+        this.etunimi = uusiEtunimi.trim();
+        if (this.etunimi.length() == 0 || this.etunimi.length() > 22) {
+            this.virheet.put("etunimi", "Kuljettajan etunimen tulee olla 1-22 kirjainta.");
+        } else {
+            this.virheet.remove("etunimi");
+        }
     }
 
     public String getSukunimi() {
         return sukunimi;
     }
 
-    public void setSukunimi(String sukunimi) {
-        this.sukunimi = sukunimi;
+    public void setSukunimi(String uusiSukunimi) {
+        if (uusiSukunimi == null || uusiSukunimi.trim().equals("")) {
+            this.virheet.put("sukunimi", "Kuljettajalla täytyy olla sukunimi.");
+            return;
+        }
+        this.sukunimi = uusiSukunimi.trim();
+        if (this.sukunimi.length() == 0 || this.sukunimi.length() > 22) {
+            this.virheet.put("sukunimi", "Kuljettajan sukunimen tulee olla 1-22 kirjainta.");
+        } else {
+            this.virheet.remove("sukunimi");
+        }
     }
 
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
@@ -71,5 +93,13 @@ public class Kuljettaja {
         tulokset.next();
         this.id = tulokset.getInt(1);
         t.sulje(tulokset, kysely);
+    }
+
+    public boolean onkoKelvollinen() {
+        return this.virheet.isEmpty();
+    }
+
+    public Collection<String> getVirheet() {
+        return this.virheet.values();
     }
 }

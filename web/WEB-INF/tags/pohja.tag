@@ -21,7 +21,7 @@
                     <li><a href="${pageContext.request.contextPath}/KuljettajaServlet">Kuljettajat</a></li>
                     <li><a href="${pageContext.request.contextPath}/NaytaAddAutoServlet">Lisää Auto</a></li>
                     <li><a href="${pageContext.request.contextPath}/NaytaAddKuljettajaServlet">Lisää Kuljettaja</a></li>
-                    <li><a href="${pageContext.request.contextPath}/NaytaAddKyytiServlet">Lisää Kyyti</a></li>
+                    <li><a href="${pageContext.request.contextPath}/NaytaAddKyytiServlet">Lisää Kyyti</a></li>              
                     <li><a href="${pageContext.request.contextPath}/UloskirjautuminenServlet">Kirjaudu Ulos</a></li>
                 </ul>
             </div>

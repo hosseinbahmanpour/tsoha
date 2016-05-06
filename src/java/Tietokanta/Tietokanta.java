@@ -29,4 +29,9 @@ public class Tietokanta {
         try { kysely.close(); } catch (Exception e) { }
         try { yhteys.close(); } catch (Exception e) { }
     }
+
+    public void sulje(PreparedStatement kysely) {        
+        try { kysely.close(); } catch (Exception e) { }
+        try { yhteys.close(); } catch (Exception e) { }
+    }
 }

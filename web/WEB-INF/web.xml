@@ -92,6 +92,22 @@
         <servlet-name>LisaaKyytiServlet</servlet-name>
         <servlet-class>Servletit.LisaaKyytiServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MuokkaaAutoServlet</servlet-name>
+        <servlet-class>Servletit.MuokkaaAutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NaytaEditAutoServlet</servlet-name>
+        <servlet-class>Servletit.NaytaEditAutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NaytaPoistaAutoServlet</servlet-name>
+        <servlet-class>Servletit.NaytaPoistaAutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaAutoServlet</servlet-name>
+        <servlet-class>Servletit.PoistaAutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -183,6 +199,22 @@
     <servlet-mapping>
         <servlet-name>LisaaKyytiServlet</servlet-name>
         <url-pattern>/LisaaKyytiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MuokkaaAutoServlet</servlet-name>
+        <url-pattern>/MuokkaaAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NaytaEditAutoServlet</servlet-name>
+        <url-pattern>/NaytaEditAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NaytaPoistaAutoServlet</servlet-name>
+        <url-pattern>/NaytaPoistaAutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaAutoServlet</servlet-name>
+        <url-pattern>/PoistaAutoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

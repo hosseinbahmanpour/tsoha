@@ -33,13 +33,15 @@ public class KuljettajaServlet extends HttpServlet {
             if (k.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään kuskeja näytettäväksi!", request);
                 tms.naytaJSP("EtusivuServlet", request, response);
+            } else {
+                request.setAttribute("kuskit", k);
+                tms.naytaJSP("kuljettajat.jsp", request, response);
+                tms.haeIlmoitus(session, request);
             }
-            request.setAttribute("kuskit", k);
-            tms.naytaJSP("kuljettajat.jsp", request, response);
         }
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

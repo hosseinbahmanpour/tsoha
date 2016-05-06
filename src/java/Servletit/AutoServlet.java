@@ -34,10 +34,11 @@ public class AutoServlet extends HttpServlet {
             if (a.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään autoa näytettäväksi!", request);
                 tms.naytaJSP("EtusivuServlet", request, response);
+            } else {
+                request.setAttribute("autot", a);
+                tms.naytaJSP("autot.jsp", request, response);
+                tms.haeIlmoitus(session, request);
             }
-            request.setAttribute("autot", a);
-            tms.naytaJSP("autot.jsp", request, response);
-            tms.haeIlmoitus(session, request);
         }
     }
 
