@@ -60,6 +60,22 @@ public class Kuljettaja {
             this.virheet.remove("sukunimi");
         }
     }
+    
+        public static Kuljettaja etsi(int id) throws NamingException, SQLException {
+        String sql = "SELECT etunimi, sukunimi FROM Kuljettaja WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, id);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        Kuljettaja k = new Kuljettaja();
+        k.setId(id);
+        k.setEtunimi(tulokset.getString("etunimi"));
+        k.setSukunimi(tulokset.getString("sukunimi"));
+        t.sulje(tulokset, kysely);
+        return k;
+    }
 
     public static List<Kuljettaja> getKuljettajat() throws NamingException, SQLException {
 
@@ -93,6 +109,18 @@ public class Kuljettaja {
         tulokset.next();
         this.id = tulokset.getInt(1);
         t.sulje(tulokset, kysely);
+    }
+    
+    public void tallennaMuokkaukset() throws NamingException, SQLException {
+        String sql = "UPDATE Kuljettaja SET etunimi=?, sukunimi=? WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(3, this.getId());
+        kysely.setString(1, this.getEtunimi());
+        kysely.setString(2, this.getSukunimi());
+        kysely.executeUpdate();
+        t.sulje(kysely);
     }
 
     public void poistaKannasta(int id) throws NamingException, SQLException {

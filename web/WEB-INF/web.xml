@@ -116,6 +116,10 @@
         <servlet-name>NaytaEditKuljettajaServlet</servlet-name>
         <servlet-class>Servletit.Muokkaaminen.NaytaEditKuljettajaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MuokkaaKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.Muokkaaminen.MuokkaaKuljettajaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>NaytaEditKuljettajaServlet</servlet-name>
         <url-pattern>/NaytaEditKuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MuokkaaKuljettajaServlet</servlet-name>
+        <url-pattern>/MuokkaaKuljettajaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

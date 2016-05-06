@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<t:pohja pageTitle="Lisää Auto">
+<t:pohja pageTitle="Muokkaa Autoa">
     <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/MuokkaaAutoServlet" method="POST">
         <input type="hidden" name="id" value="${id}">
         <div class="form-group">
