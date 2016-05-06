@@ -57,13 +57,13 @@ public class Kyyti {
         this.aika = aika;
     }
 
-    public static List<Kyyti> etsiAutonKyydit(int idParam) throws NamingException, SQLException {
+    public static List<Kyyti> etsiAutonKyydit(int id) throws NamingException, SQLException {
 
         String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.auto_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-        kysely.setInt(1, idParam);
+        kysely.setInt(1, id);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
 
@@ -82,13 +82,13 @@ public class Kyyti {
         return kyydit;
     }
 
-    public static List<Kyyti> etsiKuljettajanKyydit(int idParam) throws NamingException, SQLException {
+    public static List<Kyyti> etsiKuljettajanKyydit(int id) throws NamingException, SQLException {
 
         String sql = "SELECT Kyyti.id, Kyyti.ajovuoro_id, Kyyti.hinta, Kyyti.km, Kyyti.aika FROM Kyyti, Ajovuoro WHERE Ajovuoro.kuljettaja_id = ? AND Kyyti.ajovuoro_id = Ajovuoro.id;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-        kysely.setInt(1, idParam);
+        kysely.setInt(1, id);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
 

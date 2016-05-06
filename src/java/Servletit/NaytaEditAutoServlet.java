@@ -1,6 +1,6 @@
 package Servletit;
 
-import Mallit.Kayttaja;
+import Mallit.Auto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,26 +20,33 @@ public class NaytaEditAutoServlet extends HttpServlet {
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
-        if (kirjautunut == null) {
-            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
-            tms.naytaJSP("kirjautuminen.jsp", request, response);
-        } else {
-            tms.haeIlmoitus(session, request);
-            tms.naytaJSP("editauto.jsp", request, response);
+        tms.haeIlmoitus(session, request);
+
+        int id;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+            id = 0;
         }
+        Auto a = Auto.etsi(id);
+        request.setAttribute("id", a.getId());
+        request.setAttribute("rekkari", a.getRekkari());
+        request.setAttribute("asemapaikka", a.getAsemapaikka());
+        request.setAttribute("merkki", a.getMerkki());
+        request.setAttribute("malli", a.getMalli());
+        tms.naytaJSP("editauto.jsp", request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaEditAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaEditAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -48,10 +55,14 @@ public class NaytaEditAutoServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (NamingException ex) {
-            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (SQLException ex) {
-            Logger.getLogger(NaytaAddAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 

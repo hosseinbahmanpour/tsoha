@@ -97,6 +97,24 @@ public class Auto {
         }
     }
 
+    public static Auto etsi(int id) throws NamingException, SQLException {
+        String sql = "SELECT rekkari, asemapaikka, merkki, malli FROM Auto WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(1, id);
+        ResultSet tulokset = kysely.executeQuery();
+        tulokset.next();
+        Auto a = new Auto();
+        a.setId(id);
+        a.setRekkari(tulokset.getString("rekkari"));
+        a.setAsemapaikka(tulokset.getString("asemapaikka"));
+        a.setMerkki(tulokset.getString("merkki"));
+        a.setMalli(tulokset.getString("malli"));
+        t.sulje(tulokset, kysely);
+        return a;
+    }
+
     public static List<Auto> getAutot() throws NamingException, SQLException {
 
         String sql = "SELECT * FROM Auto;";
@@ -133,6 +151,20 @@ public class Auto {
         tulokset.next();
         this.id = tulokset.getInt(1);
         t.sulje(tulokset, kysely);
+    }
+
+    public void tallennaMuokkaukset() throws NamingException, SQLException {
+        String sql = "UPDATE Auto SET rekkari=?, asemapaikka=?, merkki=?, malli=? WHERE id=?;";
+        Tietokanta t = new Tietokanta();
+        Connection yhteys = t.getYhteys();
+        PreparedStatement kysely = yhteys.prepareStatement(sql);
+        kysely.setInt(5, this.getId());
+        kysely.setString(1, this.getRekkari());
+        kysely.setString(2, this.getAsemapaikka());
+        kysely.setString(3, this.getMerkki());
+        kysely.setString(4, this.getMalli());
+        kysely.executeUpdate();
+        t.sulje(kysely);
     }
 
     public void poistaKannasta(int id) throws NamingException, SQLException {
