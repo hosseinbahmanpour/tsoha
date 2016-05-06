@@ -19,6 +19,8 @@ public class KirjautuminenServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, NamingException {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
+        HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         response.setContentType("text/html;charset=UTF-8");
         String salasana = request.getParameter("password");
         String tunnus = request.getParameter("tunnus");
@@ -49,10 +51,8 @@ public class KirjautuminenServlet extends HttpServlet {
             tms.asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
 
-        } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
-            HttpSession session = request.getSession();
-            session.setAttribute("kirjautunut", k);
-            tms.haeIlmoitus(session, request);
+        } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {            
+            session.setAttribute("kirjautunut", k);            
             response.sendRedirect("EtusivuServlet");
         }
     }

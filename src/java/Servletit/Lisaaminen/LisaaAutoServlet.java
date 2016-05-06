@@ -1,6 +1,7 @@
-package Servletit;
+package Servletit.Lisaaminen;
 
 import Mallit.Auto;
+import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -13,26 +14,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class MuokkaaAutoServlet extends HttpServlet {
+public class LisaaAutoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
-        Auto muokattuAuto = new Auto();
-        muokattuAuto.setId(Integer.parseInt(request.getParameter("id")));
-        muokattuAuto.setRekkari(request.getParameter("rekkari"));
-        muokattuAuto.setAsemapaikka(request.getParameter("asemapaikka"));
-        muokattuAuto.setMerkki(request.getParameter("merkki"));
-        muokattuAuto.setMalli(request.getParameter("malli"));
-        if (muokattuAuto.onkoKelvollinen()) {
-            muokattuAuto.tallennaMuokkaukset();
+        Auto uusiAuto = new Auto();
+        uusiAuto.setRekkari(request.getParameter("rekkari"));
+        uusiAuto.setAsemapaikka(request.getParameter("asemapaikka"));
+        uusiAuto.setMerkki(request.getParameter("merkki"));
+        uusiAuto.setMalli(request.getParameter("malli"));
+        if (uusiAuto.onkoKelvollinen()) {
+            uusiAuto.lisaaKantaan();
+            response.sendRedirect("AutoServlet");
             HttpSession session = request.getSession();
-            session.setAttribute("ilmoitus", "Auto muokattu onnistuneesti.");
-            tms.naytaJSP("AutoServlet", request, response);
+            session.setAttribute("ilmoitus", "Auto lisätty onnistuneesti.");
         } else {
-            Collection<String> virheet = muokattuAuto.getVirheet();
+            Collection<String> virheet = uusiAuto.getVirheet();
             String rekkari = request.getParameter("rekkari");
             String asemapaikka = request.getParameter("asemapaikka");
             String merkki = request.getParameter("merkki");
@@ -50,12 +50,8 @@ public class MuokkaaAutoServlet extends HttpServlet {
                 request.setAttribute("malli", malli);
             }
             request.setAttribute("virheet", virheet);
-            request.setAttribute("id", muokattuAuto.getId());
-            request.setAttribute("rekkari", muokattuAuto.getRekkari());
-            request.setAttribute("asemapaikka", muokattuAuto.getAsemapaikka());
-            request.setAttribute("merkki", muokattuAuto.getMerkki());
-            request.setAttribute("malli", muokattuAuto.getMalli());
-            tms.naytaJSP("NaytaEditAutoServlet", request, response);
+            request.setAttribute("auto", uusiAuto);
+            tms.naytaJSP("NaytaAddAutoServlet", request, response);
         }
     }
 
@@ -66,9 +62,9 @@ public class MuokkaaAutoServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(MuokkaaAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MuokkaaAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,9 +74,9 @@ public class MuokkaaAutoServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(MuokkaaAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MuokkaaAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -66,7 +66,7 @@
     </servlet>
     <servlet>
         <servlet-name>NaytaAddAutoServlet</servlet-name>
-        <servlet-class>Servletit.NaytaAddAutoServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.NaytaAddAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UloskirjautuminenServlet</servlet-name>
@@ -74,31 +74,31 @@
     </servlet>
     <servlet>
         <servlet-name>NaytaAddKuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.NaytaAddKuljettajaServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.NaytaAddKuljettajaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NaytaAddKyytiServlet</servlet-name>
-        <servlet-class>Servletit.NaytaAddKyytiServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.NaytaAddKyytiServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LisaaKuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.LisaaKuljettajaServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.LisaaKuljettajaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LisaaAutoServlet</servlet-name>
-        <servlet-class>Servletit.LisaaAutoServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.LisaaAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LisaaKyytiServlet</servlet-name>
-        <servlet-class>Servletit.LisaaKyytiServlet</servlet-class>
+        <servlet-class>Servletit.Lisaaminen.LisaaKyytiServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MuokkaaAutoServlet</servlet-name>
-        <servlet-class>Servletit.MuokkaaAutoServlet</servlet-class>
+        <servlet-class>Servletit.Muokkaaminen.MuokkaaAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NaytaEditAutoServlet</servlet-name>
-        <servlet-class>Servletit.NaytaEditAutoServlet</servlet-class>
+        <servlet-class>Servletit.Muokkaaminen.NaytaEditAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NaytaPoistaAutoServlet</servlet-name>
@@ -106,11 +106,15 @@
     </servlet>
     <servlet>
         <servlet-name>PoistaAutoServlet</servlet-name>
-        <servlet-class>Servletit.PoistaAutoServlet</servlet-class>
+        <servlet-class>Servletit.Poistaminen.PoistaAutoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PoistaKuljettajaServlet</servlet-name>
-        <servlet-class>Servletit.PoistaKuljettajaServlet</servlet-class>
+        <servlet-class>Servletit.Poistaminen.PoistaKuljettajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NaytaEditKuljettajaServlet</servlet-name>
+        <servlet-class>Servletit.Muokkaaminen.NaytaEditKuljettajaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>PoistaKuljettajaServlet</servlet-name>
         <url-pattern>/PoistaKuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NaytaEditKuljettajaServlet</servlet-name>
+        <url-pattern>/NaytaEditKuljettajaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

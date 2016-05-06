@@ -1,9 +1,12 @@
-package Servletit;
+package Servletit.Lisaaminen;
 
+import Mallit.Auto;
+import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
+import Mallit.Kyyti;
+import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -13,34 +16,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LisaaKuljettajaServlet extends HttpServlet {
+public class NaytaAddKyytiServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
-        Kuljettaja uusiKuski = new Kuljettaja();
-        uusiKuski.setEtunimi(request.getParameter("etunimi"));
-        uusiKuski.setSukunimi(request.getParameter("sukunimi"));
-        if (uusiKuski.onkoKelvollinen()) {
-            uusiKuski.lisaaKantaan();
-            response.sendRedirect("KuljettajaServlet");
-            HttpSession session = request.getSession();
-            session.setAttribute("ilmoitus", "Kuljettaja lisätty onnistuneesti.");
+        HttpSession session = request.getSession();
+        Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
+
+        if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            Collection<String> virheet = uusiKuski.getVirheet();
-            String etunimi = request.getParameter("etunimi");
-            String sukunimi = request.getParameter("sukunimi");
-            if (!etunimi.equals("")) {
-                request.setAttribute("etunimi", etunimi);
-            }
-            if (!sukunimi.equals("")) {
-                request.setAttribute("sukunimi", sukunimi);
-            }
-            request.setAttribute("virheet", virheet);
-            request.setAttribute("kuljettaja", uusiKuski);
-            tms.naytaJSP("NaytaAddKuljettajaServlet", request, response);
+            tms.haeIlmoitus(session, request);
+            request.setAttribute("autot", Auto.getAutot());
+            request.setAttribute("kuskit", Kuljettaja.getKuljettajat());
+            tms.naytaJSP("addkyyti.jsp", request, response);
+            Kyyti uusiKyyti = new Kyyti();
+//            uusiKyyti.setAjovuoroId(request.getParameter("auto"), request.getParameter("kuljettaja"));
+            uusiKyyti.setHinta(1);
+            uusiKyyti.setKm(2);
+            uusiKyyti.setAika(0);
         }
     }
 
@@ -51,9 +49,9 @@ public class LisaaKuljettajaServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -63,9 +61,9 @@ public class LisaaKuljettajaServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(NaytaAddKuljettajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddKyytiServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

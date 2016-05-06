@@ -1,6 +1,7 @@
-package Servletit;
+package Servletit.Poistaminen;
 
 import Mallit.Auto;
+import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
