@@ -1,5 +1,6 @@
 package Servletit.Muokkaaminen;
 
+import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
 import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
@@ -18,33 +19,41 @@ public class MuokkaaKuljettajaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
-        
+
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
-        Kuljettaja muokattuKuljettaja = new Kuljettaja();
-        muokattuKuljettaja.setId(Integer.parseInt(request.getParameter("id")));
-        muokattuKuljettaja.setEtunimi(request.getParameter("etunimi"));
-        muokattuKuljettaja.setSukunimi(request.getParameter("sukunimi"));
-        if (muokattuKuljettaja.onkoKelvollinen()) {
-            muokattuKuljettaja.tallennaMuokkaukset();
-            HttpSession session = request.getSession();
-            session.setAttribute("ilmoitus", "Kuski muokattu onnistuneesti.");
-            tms.naytaJSP("KuljettajaServlet", request, response);
+        HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
+        Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
+
+        if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            Collection<String> virheet = muokattuKuljettaja.getVirheet();
-            String etunimi = request.getParameter("etunimi");
-            String sukunimi = request.getParameter("sukunimi");
-            if (!etunimi.equals("")) {
-                request.setAttribute("etunimi", etunimi);
+            Kuljettaja muokattuKuljettaja = new Kuljettaja();
+            muokattuKuljettaja.setId(Integer.parseInt(request.getParameter("id")));
+            muokattuKuljettaja.setEtunimi(request.getParameter("etunimi"));
+            muokattuKuljettaja.setSukunimi(request.getParameter("sukunimi"));
+            if (muokattuKuljettaja.onkoKelvollinen()) {
+                muokattuKuljettaja.tallennaMuokkaukset();
+                session.setAttribute("ilmoitus", "Kuski muokattu onnistuneesti.");
+                tms.naytaJSP("KuljettajaServlet", request, response);
+            } else {
+                Collection<String> virheet = muokattuKuljettaja.getVirheet();
+                String etunimi = request.getParameter("etunimi");
+                String sukunimi = request.getParameter("sukunimi");
+                if (!etunimi.equals("")) {
+                    request.setAttribute("etunimi", etunimi);
+                }
+                if (!sukunimi.equals("")) {
+                    request.setAttribute("sukunimi", sukunimi);
+                }
+                request.setAttribute("virheet", virheet);
+                request.setAttribute("id", muokattuKuljettaja.getId());
+                request.setAttribute("etunimi", muokattuKuljettaja.getEtunimi());
+                request.setAttribute("sukunimi", muokattuKuljettaja.getSukunimi());
+                tms.naytaJSP("NaytaEditKuljettajaServlet", request, response);
             }
-            if (!sukunimi.equals("")) {
-                request.setAttribute("sukunimi", sukunimi);
-            }
-            request.setAttribute("virheet", virheet);
-            request.setAttribute("id", muokattuKuljettaja.getId());
-            request.setAttribute("etunimi", muokattuKuljettaja.getEtunimi());
-            request.setAttribute("sukunimi", muokattuKuljettaja.getSukunimi());
-            tms.naytaJSP("NaytaEditKuljettajaServlet", request, response);
         }
     }
 

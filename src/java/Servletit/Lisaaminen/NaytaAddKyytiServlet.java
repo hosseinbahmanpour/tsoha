@@ -3,7 +3,6 @@ package Servletit.Lisaaminen;
 import Mallit.Auto;
 import Mallit.Kayttaja;
 import Mallit.Kuljettaja;
-import Mallit.Kyyti;
 import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,24 +20,19 @@ public class NaytaAddKyytiServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
-        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
-        response.setContentType("text/html;charset=UTF-8");
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();  
+        response.setContentType("text/html;charset=UTF-8");        
         HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
-        } else {
-            tms.haeIlmoitus(session, request);
+        } else {  
             request.setAttribute("autot", Auto.getAutot());
             request.setAttribute("kuskit", Kuljettaja.getKuljettajat());
             tms.naytaJSP("addkyyti.jsp", request, response);
-            Kyyti uusiKyyti = new Kyyti();
-//            uusiKyyti.setAjovuoroId(request.getParameter("auto"), request.getParameter("kuljettaja"));
-            uusiKyyti.setHinta(1);
-            uusiKyyti.setKm(2);
-            uusiKyyti.setAika(0);
         }
     }
 

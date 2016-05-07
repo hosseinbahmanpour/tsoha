@@ -17,13 +17,14 @@ public class LisaaKyytiServlet extends HttpServlet {
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
+
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
             tms.asetaVirhe("Ominaisuutta ei ole vielä toteutettu!", request);
-            tms.haeIlmoitus(session, request);
             tms.naytaJSP("NaytaAddKyytiServlet", request, response);
         }
     }

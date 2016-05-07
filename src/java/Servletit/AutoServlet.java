@@ -20,16 +20,16 @@ public class AutoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException {
 
-        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
-        response.setContentType("text/html;charset=UTF-8");
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();  
+        response.setContentType("text/html;charset=UTF-8");        
         HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
-        } else {
-            tms.haeIlmoitus(session, request);
+        } else {            
             List<Auto> a = Auto.getAutot();
             if (a.isEmpty()) {
                 tms.asetaVirhe("Ei yhtään autoa näytettäväksi!", request);

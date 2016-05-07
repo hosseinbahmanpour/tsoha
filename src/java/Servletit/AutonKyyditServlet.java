@@ -20,16 +20,16 @@ public class AutonKyyditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
-        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
-        response.setContentType("text/html;charset=UTF-8");
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();  
+        response.setContentType("text/html;charset=UTF-8");        
         HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            tms.haeIlmoitus(session, request);
             String idParam = request.getParameter("id");
             int id;
             try {

@@ -1,6 +1,7 @@
-package Servletit;
+package Servletit.Kirjautuminen;
 
 import Mallit.Kayttaja;
+import Servletit.ToistuvatMetoditServleteille;
 import Testit.YhteysTesti;
 import java.io.IOException;
 import java.sql.SQLException;

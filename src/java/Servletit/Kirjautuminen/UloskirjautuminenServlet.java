@@ -1,6 +1,7 @@
-package Servletit;
+package Servletit.Kirjautuminen;
 
 import Mallit.Kayttaja;
+import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +14,16 @@ public class UloskirjautuminenServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
-        response.setContentType("text/html;charset=UTF-8");
+        ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();  
+        response.setContentType("text/html;charset=UTF-8");        
         HttpSession session = request.getSession();
+        tms.haeIlmoitus(session, request);
         Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
         if (kirjautunut == null) {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
-        } else {
+        } else {            
             tms.naytaJSP("uloskirjautuminen.jsp", request, response);
         }
     }

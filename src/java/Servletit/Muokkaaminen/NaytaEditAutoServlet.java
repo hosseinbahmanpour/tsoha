@@ -2,6 +2,7 @@ package Servletit.Muokkaaminen;
 
 import Servletit.Lisaaminen.NaytaAddAutoServlet;
 import Mallit.Auto;
+import Mallit.Kayttaja;
 import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,20 +24,27 @@ public class NaytaEditAutoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         tms.haeIlmoitus(session, request);
+        Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
 
-        int id;
-        try {
-            id = Integer.parseInt(request.getParameter("id"));
-        } catch (Exception e) {
-            id = 0;
+        if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
+        } else {
+
+            int id;
+            try {
+                id = Integer.parseInt(request.getParameter("id"));
+            } catch (Exception e) {
+                id = 0;
+            }
+            Auto a = Auto.etsi(id);
+            request.setAttribute("id", a.getId());
+            request.setAttribute("rekkari", a.getRekkari());
+            request.setAttribute("asemapaikka", a.getAsemapaikka());
+            request.setAttribute("merkki", a.getMerkki());
+            request.setAttribute("malli", a.getMalli());
+            tms.naytaJSP("editauto.jsp", request, response);
         }
-        Auto a = Auto.etsi(id);
-        request.setAttribute("id", a.getId());
-        request.setAttribute("rekkari", a.getRekkari());
-        request.setAttribute("asemapaikka", a.getAsemapaikka());
-        request.setAttribute("merkki", a.getMerkki());
-        request.setAttribute("malli", a.getMalli());
-        tms.naytaJSP("editauto.jsp", request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

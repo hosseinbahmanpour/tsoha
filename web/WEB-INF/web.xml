@@ -38,7 +38,7 @@
     </servlet>
     <servlet>
         <servlet-name>KirjautuminenServlet</servlet-name>
-        <servlet-class>Servletit.KirjautuminenServlet</servlet-class>
+        <servlet-class>Servletit.Kirjautuminen.KirjautuminenServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EtusivuServlet</servlet-name>
@@ -70,7 +70,7 @@
     </servlet>
     <servlet>
         <servlet-name>UloskirjautuminenServlet</servlet-name>
-        <servlet-class>Servletit.UloskirjautuminenServlet</servlet-class>
+        <servlet-class>Servletit.Kirjautuminen.UloskirjautuminenServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NaytaAddKuljettajaServlet</servlet-name>

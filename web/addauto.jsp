@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="inputAsemapaikka" class="col-md-2 control-label">Asemapaikka</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="inputAsemapaikka" name="asemapaikka" placeholder="Korso" value="${asemapaikka}">
+                <input type="text" class="form-control" id="inputAsemapaikka" name="asemapaikka" placeholder="Vantaa" value="${asemapaikka}">
             </div>
         </div>
         <div class="form-group">

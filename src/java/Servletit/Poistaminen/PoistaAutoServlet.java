@@ -1,6 +1,7 @@
 package Servletit.Poistaminen;
 
 import Mallit.Auto;
+import Mallit.Kayttaja;
 import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,19 +21,26 @@ public class PoistaAutoServlet extends HttpServlet {
 
         ToistuvatMetoditServleteille tms = new ToistuvatMetoditServleteille();
         response.setContentType("text/html;charset=UTF-8");
-
-        int id;
-        try {
-            id = Integer.parseInt(request.getParameter("id"));
-        } catch (Exception e) {
-            id = 0;
-        }
-
-        Auto poistettava = new Auto();
-        poistettava.poistaKannasta(id);
         HttpSession session = request.getSession();
-        session.setAttribute("ilmoitus", "Auto poistettu onnistuneesti.");
-        tms.naytaJSP("AutoServlet", request, response);
+        Kayttaja kirjautunut = (Kayttaja) session.getAttribute("kirjautunut");
+
+        if (kirjautunut == null) {
+            tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
+            tms.naytaJSP("kirjautuminen.jsp", request, response);
+        } else {
+
+            int id;
+            try {
+                id = Integer.parseInt(request.getParameter("id"));
+            } catch (Exception e) {
+                id = 0;
+            }
+
+            Auto poistettava = new Auto();
+            poistettava.poistaKannasta(id);
+            session.setAttribute("ilmoitus", "Auto poistettu onnistuneesti.");
+            tms.naytaJSP("AutoServlet", request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
