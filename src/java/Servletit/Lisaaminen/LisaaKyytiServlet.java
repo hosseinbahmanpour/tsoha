@@ -36,7 +36,8 @@ public class LisaaKyytiServlet extends HttpServlet {
             Ajovuoro av = null;
             try {
                 av = Ajovuoro.etsi(avK, avA);
-            } catch (Exception e) {
+            } catch (NamingException e) {
+            } catch (SQLException e) {
             }
             if (av != null) {
                 Kyyti uusiKyyti = new Kyyti();
