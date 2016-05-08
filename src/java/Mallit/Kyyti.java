@@ -124,7 +124,6 @@ public class Kyyti {
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setInt(1, id);
         ResultSet tulokset = kysely.executeQuery();
-        tulokset.next();
 
         ArrayList<Kyyti> kyydit = new ArrayList<Kyyti>();
 
@@ -149,7 +148,6 @@ public class Kyyti {
         PreparedStatement kysely = yhteys.prepareStatement(sql);
         kysely.setInt(1, id);
         ResultSet tulokset = kysely.executeQuery();
-        tulokset.next();
 
         ArrayList<Kyyti> kyydit = new ArrayList<Kyyti>();
 
