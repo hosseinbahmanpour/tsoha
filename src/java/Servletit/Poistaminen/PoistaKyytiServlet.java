@@ -1,6 +1,5 @@
 package Servletit.Poistaminen;
 
-import Mallit.Auto;
 import Mallit.Kayttaja;
 import Mallit.Kyyti;
 import Servletit.ToistuvatMetoditServleteille;
