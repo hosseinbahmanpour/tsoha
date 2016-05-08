@@ -1,9 +1,9 @@
-package Servletit;
+package Servletit.Muokkaaminen;
 
-import Mallit.Auto;
+import Servletit.Lisaaminen.NaytaAddAutoServlet;
 import Mallit.Kayttaja;
-import Mallit.Kuljettaja;
 import Mallit.Kyyti;
+import Servletit.ToistuvatMetoditServleteille;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class EtusivuServlet extends HttpServlet {
+public class NaytaEditKyytiServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
@@ -30,23 +30,33 @@ public class EtusivuServlet extends HttpServlet {
             tms.asetaVirhe("Ole hyvä, ja kirjaudu sisään!", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
         } else {
-            request.setAttribute("autot", Auto.lukumaara());
-            request.setAttribute("kuskit", Kuljettaja.lukumaara());
-            request.setAttribute("kyydit", Kyyti.lukumaara());
-            tms.naytaJSP("etusivu.jsp", request, response);
+
+            int id;
+            try {
+                id = Integer.parseInt(request.getParameter("id"));
+            } catch (Exception e) {
+                id = 0;
+            }
+            Kyyti k = Kyyti.etsi(id);
+            request.setAttribute("id", k.getId());
+            request.setAttribute("ajovuoro", k.getAjovuoroId());
+            request.setAttribute("hinta", k.getHinta());
+            request.setAttribute("km", k.getKm());
+            request.setAttribute("aika", k.getAika());
+            tms.naytaJSP("editkyyti.jsp", request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaEditAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaEditAutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -55,15 +65,19 @@ public class EtusivuServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (NamingException ex) {
-            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (SQLException ex) {
-            Logger.getLogger(EtusivuServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NaytaAddAutoServlet.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>    
+    }// </editor-fold>
 }

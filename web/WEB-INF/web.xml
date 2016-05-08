@@ -120,6 +120,22 @@
         <servlet-name>MuokkaaKuljettajaServlet</servlet-name>
         <servlet-class>Servletit.Muokkaaminen.MuokkaaKuljettajaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NaytaEditKyytiServlet</servlet-name>
+        <servlet-class>Servletit.Muokkaaminen.NaytaEditKyytiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MuokkaaKyytiServlet</servlet-name>
+        <servlet-class>Servletit.Muokkaaminen.MuokkaaKyytiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaKyyti</servlet-name>
+        <servlet-class>Servletit.Poistaminen.PoistaKyyti</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaKyytiServlet</servlet-name>
+        <servlet-class>Servletit.Poistaminen.PoistaKyytiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>YhteysTestaaja</servlet-name>
         <url-pattern>/YhteysTestaaja</url-pattern>
@@ -239,6 +255,22 @@
     <servlet-mapping>
         <servlet-name>MuokkaaKuljettajaServlet</servlet-name>
         <url-pattern>/MuokkaaKuljettajaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NaytaEditKyytiServlet</servlet-name>
+        <url-pattern>/NaytaEditKyytiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MuokkaaKyytiServlet</servlet-name>
+        <url-pattern>/MuokkaaKyytiServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaKyyti</servlet-name>
+        <url-pattern>/PoistaKyyti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaKyytiServlet</servlet-name>
+        <url-pattern>/PoistaKyytiServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

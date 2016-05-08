@@ -4,7 +4,7 @@
 <t:pohja pageTitle="Muokkaa Kuljettajaa">
     <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/MuokkaaKuljettajaServlet" method="POST">
         <input type="hidden" name="id" value="${id}">
-         <div class="form-group">
+        <div class="form-group">
             <label for="inputEtunimi" class="col-md-2 control-label">Etunimi</label>
             <div class="col-md-10">
                 <input type="text" class="form-control" id="inputEtunimi" name="etunimi" placeholder="Vladimir" value="${etunimi}">

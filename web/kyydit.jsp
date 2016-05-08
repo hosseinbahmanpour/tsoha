@@ -10,6 +10,8 @@
                 <th>Hinta (€)</th>
                 <th>Matka (km)</th>
                 <th>Aika (min)</th>
+                <th>Muokkaa</th>
+                <th>Poista</th>
             </tr>
         <tbody>                  
             <c:forEach var="kyyti" items="${kyydit}">
@@ -19,6 +21,8 @@
                     <th><div class="kyyti">${kyyti.hinta}</div></th>
                     <th><div class="kyyti">${kyyti.km}</div></th>
                     <th><div class="kyyti">${kyyti.aika}</div></th>
+                    <th><a href="NaytaEditKyytiServlet?id=${kyyti.id}"><input type="submit" value="Muokkaa" /></a></th>
+                    <th><a href="PoistaKyytiServlet?id=${kyyti.id}"><input type="submit" value="Poista" /></a></th>
                 </tr>
             </c:forEach>    
             </thead>

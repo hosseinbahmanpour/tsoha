@@ -21,12 +21,20 @@ public class Ajovuoro {
         this.id = id;
     }
 
+    public void setId(String id) {
+        this.id = Integer.parseInt(id);
+    }
+
     public int getKuljettajaId() {
         return kuljettajaId;
     }
 
     public void setKuljettajaId(int kuljettajaId) {
         this.kuljettajaId = kuljettajaId;
+    }
+
+    public void setKuljettajaId(String kuljettajaId) {
+        this.kuljettajaId = Integer.parseInt(kuljettajaId);
     }
 
     public int getAutoId() {
@@ -37,18 +45,25 @@ public class Ajovuoro {
         this.autoId = autoId;
     }
 
-    public static int etsi(int kuskiId, int autoId) throws NamingException, SQLException {
-        String sql = "SELECT id FROM Ajovuoro WHERE kuljettaja_id=?, auto_id=?;";
+    public void setAutoId(String autoId) {
+        this.autoId = Integer.parseInt(autoId);
+    }
+
+    public static Ajovuoro etsi(int kuljettajaId, int autoId) throws NamingException, SQLException {
+        String sql = "SELECT id FROM Ajovuoro WHERE kuljettaja_id=? AND auto_id=?;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
         PreparedStatement kysely = yhteys.prepareStatement(sql);
-        kysely.setInt(1, kuskiId);
+        kysely.setInt(1, kuljettajaId);
         kysely.setInt(2, autoId);
         ResultSet tulokset = kysely.executeQuery();
         tulokset.next();
-        int id = Integer.parseInt(tulokset.getString("id"));
+        Ajovuoro a = new Ajovuoro();
+        a.setId(tulokset.getInt("id"));
+        a.setKuljettajaId(kuljettajaId);
+        a.setAutoId(tulokset.getString(autoId));
         t.sulje(tulokset, kysely);
-        return id;
+        return a;
     }
 
     public void lisaaKantaan() throws NamingException, SQLException {

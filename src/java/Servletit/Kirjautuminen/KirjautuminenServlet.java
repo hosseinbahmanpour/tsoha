@@ -52,8 +52,8 @@ public class KirjautuminenServlet extends HttpServlet {
             tms.asetaVirhe("Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä.", request);
             tms.naytaJSP("kirjautuminen.jsp", request, response);
 
-        } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {            
-            session.setAttribute("kirjautunut", k);            
+        } else if (tunnus.equals(k.getTunnus()) && salasana.equals(k.getSalasana())) {
+            session.setAttribute("kirjautunut", k);
             response.sendRedirect("EtusivuServlet");
         }
     }

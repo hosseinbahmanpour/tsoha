@@ -60,8 +60,8 @@ public class Kuljettaja {
             this.virheet.remove("sukunimi");
         }
     }
-    
-        public static Kuljettaja etsi(int id) throws NamingException, SQLException {
+
+    public static Kuljettaja etsi(int id) throws NamingException, SQLException {
         String sql = "SELECT etunimi, sukunimi FROM Kuljettaja WHERE id=?;";
         Tietokanta t = new Tietokanta();
         Connection yhteys = t.getYhteys();
@@ -110,7 +110,7 @@ public class Kuljettaja {
         this.id = tulokset.getInt(1);
         t.sulje(tulokset, kysely);
     }
-    
+
     public void tallennaMuokkaukset() throws NamingException, SQLException {
         String sql = "UPDATE Kuljettaja SET etunimi=?, sukunimi=? WHERE id=?;";
         Tietokanta t = new Tietokanta();
